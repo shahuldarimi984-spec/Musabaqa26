@@ -165,6 +165,9 @@ body {
         <h2>THAMARASSERY RJM MUSABAQA</h2>
         <div class="date-text">2026 ഒക്ടോബർ 10 ശനിയാഴ്ച</div>
         <p>PROGRAM SCHEDULE</p>
+        <div id="countdown" style="margin-top:12px; padding:10px; background:rgba(255,255,255,0.15); border:1px solid #d4af37; border-radius:12px; color:#fff; font-weight:bold; font-size:14px;">
+    ⏳ മത്സരം തുടങ്ങാൻ ഇനി കണക്കാക്കുന്നു...
+</div>
     </div>
 
     <!-- Search Section -->
@@ -382,6 +385,34 @@ body {
                 return `<span class="status-badge status-upcoming">തുടങ്ങാൻ ഇനി: ${timeRemaining}</span>`;
             }
         }
-    </script>
+     function updateCountdown() {
+    const target = new Date("2026-10-10T08:30:00+05:30").getTime();
+    const now = new Date().getTime();
+    const difference = target - now;
+
+    const countdown = document.getElementById("countdown");
+
+    if (!countdown) return;
+
+    if (difference <= 0) {
+        countdown.innerHTML = "🎉 മുസാബഖ ആരംഭിച്ചു!";
+        return;
+    }
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((difference / (1000 * 60)) % 60);
+    const seconds = Math.floor((difference / 1000) % 60);
+
+    countdown.innerHTML =
+        "⏳ മത്സരം തുടങ്ങാൻ ഇനി: " +
+        days + " ദിവസം " +
+        hours + " മണിക്കൂർ " +
+        minutes + " മിനിറ്റ് " +
+        seconds + " സെക്കന്റ്";
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000); </script>
 </body>
 </html>
