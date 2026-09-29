@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THAMARASSERY RJM MUSABAQA</title>
+    #countdown {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+#countdown span {
+    background: rgba(255,255,255,0.14);
+    border: 1px solid #d4af37;
+    border-radius: 10px;
+    padding: 8px 10px;
+    min-width: 58px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
     <style>
         * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: #f0f2f5; margin: 0; padding: 12px; }
@@ -390,11 +411,10 @@ body {
     const difference = target - now;
 
     const countdown = document.getElementById("countdown");
-
     if (!countdown) return;
 
     if (difference <= 0) {
-        countdown.innerHTML = "🎉 മുസാബഖ ആരംഭിച്ചു!";
+        countdown.innerHTML = "<span>🎉 മുസാബഖ<br>ആരംഭിച്ചു!</span>";
         return;
     }
 
@@ -404,11 +424,10 @@ body {
     const seconds = Math.floor((difference / 1000) % 60);
 
     countdown.innerHTML =
-        "⏳ മത്സരം തുടങ്ങാൻ ഇനി: " +
-        days + " ദിവസം " +
-        hours + " മണിക്കൂർ " +
-        minutes + " മിനിറ്റ് " +
-        seconds + " സെക്കന്റ്";
+        "<span>📅<br>" + days + "<small> ദിവസം</small></span>" +
+        "<span>🕐<br>" + hours + "<small> മണിക്കൂർ</small></span>" +
+        "<span>⏱️<br>" + minutes + "<small> മിനിറ്റ്</small></span>" +
+        "<span>⚡<br>" + seconds + "<small> സെക്കന്റ്</small></span>";
 }
 
 updateCountdown();
