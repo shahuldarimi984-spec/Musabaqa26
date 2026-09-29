@@ -4,193 +4,253 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THAMARASSERY RJM MUSABAQA</title>
-    
+
     <style>
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f1f8f4, #fffdf5);
+            color: #173b2a;
+            margin: 0;
+            padding: 14px;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #064e3b, #087f5b);
+            color: white;
+            padding: 24px 15px;
+            border-radius: 18px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            border-bottom: 4px solid #d4af37;
+            margin-bottom: 12px;
+        }
+
+        .header h2 {
+            margin: 0;
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .header .date-text {
+            margin: 6px 0 0;
+            color: #f7d774;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .header p {
+            margin: 4px 0 0;
+            color: #e8f5e9;
+            font-size: 12px;
+        }
+
+        /* PREMIUM COUNTDOWN */
         #countdown {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 14px;
-}
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
 
-#countdown span {
-    background: rgba(255,255,255,0.14);
-    border: 1px solid #d4af37;
-    border-radius: 10px;
-    padding: 8px 10px;
-    min-width: 58px;
-    text-align: center;
-    color: #fff;
-    font-weight: bold;
-}
-        * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: #f0f2f5; margin: 0; padding: 12px; }
-        .header { text-align: center; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 12px; }
-        .header h2 { margin: 0; color: #1a237e; font-size: 20px; font-weight: bold; }
-        .header .date-text { margin: 6px 0 0; color: #d32f2f; font-size: 14px; font-weight: bold; }
-        .header p { margin: 4px 0 0; color: #666; font-size: 12px; }
-        
-        /* Search Section */
-        .search-box { background: #fff; padding: 12px; border-radius: 12px; margin-bottom: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .search-box input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; outline: none; }
-        .search-result { margin-top: 10px; display: none; }
-        
-        /* Countdown Badge */
-        .status-badge { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; margin-left: 5px; }
-        .status-upcoming { background: #fff3e0; color: #e65100; }
-        .status-running { background: #e8f5e9; color: #2e7d32; }
-        .status-ended { background: #ffebee; color: #c62828; }
+        #countdown span {
+            background: rgba(255,255,255,0.14);
+            border: 1px solid #d4af37;
+            border-radius: 10px;
+            padding: 8px 10px;
+            min-width: 58px;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            line-height: 1.25;
+        }
 
-        /* Venue Tabs */
-        .tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 5px; margin-bottom: 12px; }
-        .tab-btn { flex: 1; min-width: 80px; padding: 10px; background: #fff; border: 1px solid #ccc; border-radius: 8px; font-weight: bold; cursor: pointer; text-align: center; font-size: 14px; white-space: nowrap; }
-        .tab-btn.active { background: #1a237e; color: #fff; border-color: #1a237e; }
-        
-        /* Content Sections */
-        .venue-content { display: none; }
-        .venue-content.active { display: block; }
-        
-        /* Event Cards */
-        .card { background: #fff; border-radius: 10px; padding: 12px 15px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 5px solid #2e7d32; }
-        .card.break { background: #e3f2fd; border-left: 5px solid #0288d1; text-align: center; }
-        
-        .time-badge { display: inline-block; background: #e8f5e9; color: #2e7d32; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; margin-bottom: 6px; }
-        .venue-badge { display: inline-block; background: #1a237e; color: #fff; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; margin-bottom: 6px; }
-        .break .time-badge { background: #bbdefb; color: #01579b; }
-        
-        .event-title { font-size: 16px; font-weight: bold; color: #333; margin-bottom: 4px; }
-        .category { font-size: 13px; color: #666; }
-   /* 🌙 GREEN + GOLD PREMIUM DESIGN */
+        #countdown small {
+            font-size: 10px;
+            font-weight: normal;
+        }
 
-body {
-    background: linear-gradient(135deg, #f1f8f4, #fffdf5);
-    color: #173b2a;
-    padding: 14px;
-}
+        /* SEARCH */
+        .search-box {
+            background: #fff;
+            border: 1px solid #d4af37;
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
 
-.header {
-    background: linear-gradient(135deg, #064e3b, #087f5b);
-    color: white;
-    padding: 24px 15px;
-    border-radius: 18px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-    border-bottom: 4px solid #d4af37;
-}
+        .search-box input {
+            width: 100%;
+            padding: 13px;
+            border: 2px solid #b8d8c5;
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+        }
 
-.header h2 {
-    color: #fff;
-    font-size: 22px;
-    letter-spacing: 0.5px;
-}
+        .search-box input:focus {
+            border-color: #087f5b;
+            box-shadow: 0 0 0 3px rgba(8,127,91,0.12);
+        }
 
-.header .date-text {
-    color: #f7d774;
-    font-size: 15px;
-}
+        .search-result {
+            margin-top: 10px;
+            display: none;
+        }
 
-.header p {
-    color: #e8f5e9;
-}
+        /* STATUS */
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
 
-.search-box {
-    background: #fff;
-    border: 1px solid #d4af37;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
+        .status-upcoming {
+            background: #fff3cd;
+            color: #946200;
+        }
 
-.search-box input {
-    border: 2px solid #b8d8c5;
-    border-radius: 12px;
-    padding: 13px;
-}
+        .status-running {
+            background: #d1fae5;
+            color: #047857;
+        }
 
-.search-box input:focus {
-    border-color: #087f5b;
-    box-shadow: 0 0 0 3px rgba(8,127,91,0.12);
-}
+        .status-ended {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
 
-.tabs {
-    gap: 8px;
-}
+        /* VENUE TABS */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            margin-bottom: 12px;
+        }
 
-.tab-btn {
-    background: #fff;
-    border: 2px solid #b8d8c5;
-    color: #075c43;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-}
+        .tab-btn {
+            flex: 1;
+            min-width: 80px;
+            padding: 10px;
+            background: #fff;
+            border: 2px solid #b8d8c5;
+            color: #075c43;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
 
-.tab-btn.active {
-    background: linear-gradient(135deg, #064e3b, #087f5b);
-    color: #fff;
-    border-color: #d4af37;
-    box-shadow: 0 4px 10px rgba(6,78,59,0.25);
-}
+        .tab-btn.active {
+            background: linear-gradient(135deg, #064e3b, #087f5b);
+            color: #fff;
+            border-color: #d4af37;
+            box-shadow: 0 4px 10px rgba(6,78,59,0.25);
+        }
 
-.card {
-    border-left: 5px solid #087f5b;
-    border-radius: 14px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    transition: transform 0.2s ease;
-}
+        /* CONTENT */
+        .venue-content {
+            display: none;
+        }
 
-.card.break {
-    background: linear-gradient(135deg, #fff8dc, #fffdf3);
-    border-left-color: #d4af37;
-}
+        .venue-content.active {
+            display: block;
+        }
 
-.time-badge {
-    background: #e8f5e9;
-    color: #086b4d;
-    border-radius: 20px;
-}
+        /* EVENT CARDS */
+        .card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-left: 5px solid #087f5b;
+            transition: transform 0.2s ease;
+        }
 
-.venue-badge {
-    background: linear-gradient(135deg, #064e3b, #087f5b);
-    border: 1px solid #d4af37;
-    border-radius: 20px;
-}
+        .card.break {
+            background: linear-gradient(135deg, #fff8dc, #fffdf3);
+            border-left: 5px solid #d4af37;
+            text-align: center;
+        }
 
-.event-title {
-    color: #173b2a;
-    font-size: 16px;
-}
+        .time-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #086b4d;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
 
-.category {
-    color: #6b7280;
-}
+        .venue-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #064e3b, #087f5b);
+            border: 1px solid #d4af37;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
 
-.status-running {
-    background: #d1fae5;
-    color: #047857;
-}
+        .break .time-badge {
+            background: #fff3cd;
+            color: #946200;
+        }
 
-.status-upcoming {
-    background: #fff3cd;
-    color: #946200;
-}
+        .event-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #173b2a;
+            margin-bottom: 4px;
+        }
 
-.status-ended {
-    background: #fee2e2;
-    color: #b91c1c;
-} </style>
+        .category {
+            font-size: 13px;
+            color: #6b7280;
+        }
+    </style>
 </head>
+
 <body>
 
     <div class="header">
         <h2>THAMARASSERY RJM MUSABAQA</h2>
         <div class="date-text">2026 ഒക്ടോബർ 10 ശനിയാഴ്ച</div>
         <p>PROGRAM SCHEDULE</p>
-        
-        
+
+        <!-- COUNTDOWN -->
+        <div id="countdown">
+            <span>📅<br>കണക്കാക്കുന്നു...</span>
+        </div>
     </div>
 
     <!-- Search Section -->
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="കോഡ് നമ്പറോ മത്സര ഇനത്തിന്റെ പേരോ നൽകുക (ഉദാഹരണത്തിന്: 408, ഖിറാഅത്ത്, ഹിഫ്ള്)..." onkeyup="searchCode()">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="കോഡ് നമ്പറോ മത്സര ഇനത്തിന്റെ പേരോ നൽകുക (ഉദാഹരണത്തിന്: 408, ഖിറാഅത്ത്, ഹിഫ്ള്)..."
+            onkeyup="searchCode()"
+        >
         <div id="searchResult" class="search-result"></div>
     </div>
 
@@ -204,101 +264,362 @@ body {
 
     <!-- വേദി 1 -->
     <div id="v1" class="venue-content active">
-        <div class="card" data-time="08:30" data-endtime="09:40"><span class="time-badge">08.30 - 09.40</span><div class="event-title">408-മാപ്പിളപ്പാട്ട്</div><div class="category">സീനിയർ</div></div>
-        <div class="card" data-time="09:50" data-endtime="10:50"><span class="time-badge">09.50 - 10.50</span><div class="event-title">507-മാപ്പിളപ്പാട്ട്</div><div class="category">സൂപ്പർ സീനിയർ</div></div>
-        <div class="card" data-time="10:55" data-endtime="11:45"><span class="time-badge">10.55 - 11.45</span><div class="event-title">604-അറബി സംഘഗാനം</div><div class="category">ജനറൽ</div></div>
-        <div class="card" data-time="11:50" data-endtime="12:00"><span class="time-badge">11.50 - 12.00</span><div class="event-title">702-ഇസ്‌ലാമിക ഗാനം മാഷപ്പ്</div><div class="category">അലുംനി</div></div>
-        <div class="card" data-time="12:00" data-endtime="12:50"><span class="time-badge">12.00 - 12.50</span><div class="event-title">307-ഇസ്‌ലാമിക സമൂഹ ഗാനം</div><div class="category">ജൂനിയർ</div></div>
-        
-        <div class="card break"><span class="time-badge">12.50 - 01.50</span><div class="event-title">നിസ്കാരം, ഭക്ഷണം & വിശ്രമം</div></div>
-        
-        <div class="card" data-time="14:00" data-endtime="15:00"><span class="time-badge">02.00 - 03.00</span><div class="event-title">203-മദ്ഹുന്നബി ഗാനം</div><div class="category">സബ്ജൂനിയർ</div></div>
-        <div class="card" data-time="15:05" data-endtime="16:00"><span class="time-badge">03.05 - 04.00</span><div class="event-title">601-ബുർദാലാപനം</div><div class="category">ജനറൽ</div></div>
-        
-        <div class="card break"><span class="time-badge">04.00 - 04.30</span><div class="event-title">അസർ നിസ്കാരം & ചായ</div></div>
-        
-        <div class="card" data-time="16:30" data-endtime="17:20"><span class="time-badge">04.30 - 05.20</span><div class="event-title">602-മൗലിദ് പാരായണം</div><div class="category">ജനറൽ</div></div>
-        <div class="card" data-time="17:30" data-endtime="18:20"><span class="time-badge">05.30 - 06.20</span><div class="event-title">603-ദഫ്മുട്ട്</div><div class="category">ജനറൽ</div></div>
+
+        <div class="card" data-time="08:30" data-endtime="09:40">
+            <span class="time-badge">08.30 - 09.40</span>
+            <div class="event-title">408-മാപ്പിളപ്പാട്ട്</div>
+            <div class="category">സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="09:50" data-endtime="10:50">
+            <span class="time-badge">09.50 - 10.50</span>
+            <div class="event-title">507-മാപ്പിളപ്പാട്ട്</div>
+            <div class="category">സൂപ്പർ സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="10:55" data-endtime="11:45">
+            <span class="time-badge">10.55 - 11.45</span>
+            <div class="event-title">604-അറബി സംഘഗാനം</div>
+            <div class="category">ജനറൽ</div>
+        </div>
+
+        <div class="card" data-time="11:50" data-endtime="12:00">
+            <span class="time-badge">11.50 - 12.00</span>
+            <div class="event-title">702-ഇസ്‌ലാമിക ഗാനം മാഷപ്പ്</div>
+            <div class="category">അലുംനി</div>
+        </div>
+
+        <div class="card" data-time="12:00" data-endtime="12:50">
+            <span class="time-badge">12.00 - 12.50</span>
+            <div class="event-title">307-ഇസ്‌ലാമിക സമൂഹ ഗാനം</div>
+            <div class="category">ജൂനിയർ</div>
+        </div>
+
+        <div class="card break">
+            <span class="time-badge">12.50 - 01.50</span>
+            <div class="event-title">നിസ്കാരം, ഭക്ഷണം & വിശ്രമം</div>
+        </div>
+
+        <div class="card" data-time="14:00" data-endtime="15:00">
+            <span class="time-badge">02.00 - 03.00</span>
+            <div class="event-title">203-മദ്ഹുന്നബി ഗാനം</div>
+            <div class="category">സബ്ജൂനിയർ</div>
+        </div>
+
+        <div class="card" data-time="15:05" data-endtime="16:00">
+            <span class="time-badge">03.05 - 04.00</span>
+            <div class="event-title">601-ബുർദാലാപനം</div>
+            <div class="category">ജനറൽ</div>
+        </div>
+
+        <div class="card break">
+            <span class="time-badge">04.00 - 04.30</span>
+            <div class="event-title">അസർ നിസ്കാരം & ചായ</div>
+        </div>
+
+        <div class="card" data-time="16:30" data-endtime="17:20">
+            <span class="time-badge">04.30 - 05.20</span>
+            <div class="event-title">602-മൗലിദ് പാരായണം</div>
+            <div class="category">ജനറൽ</div>
+        </div>
+
+        <div class="card" data-time="17:30" data-endtime="18:20">
+            <span class="time-badge">05.30 - 06.20</span>
+            <div class="event-title">603-ദഫ്മുട്ട്</div>
+            <div class="category">ജനറൽ</div>
+        </div>
     </div>
 
     <!-- വേദി 2 -->
     <div id="v2" class="venue-content">
-        <div class="card" data-time="08:30" data-endtime="09:30"><span class="time-badge">08.30 - 09.30</span><div class="event-title">306-ഇസ്‌ലാമിക ഗാനം</div><div class="category">ജൂനിയർ</div></div>
-        <div class="card" data-time="09:40" data-endtime="10:30"><span class="time-badge">09.40 - 10.30</span><div class="event-title">404-ഇസ്‌ലാമിക് ഗാനം അറബി</div><div class="category">സീനിയർ</div></div>
-        <div class="card" data-time="10:35" data-endtime="11:10"><span class="time-badge">10.35 - 11.10</span><div class="event-title">102-കഥാകഥനം</div><div class="category">കിഡ്ഡീസ്</div></div>
-        <div class="card" data-time="11:20" data-endtime="11:30"><span class="time-badge">11.20 - 11.30</span><div class="event-title">907-സമസ്ത ഖിസ്സപ്പാട്ട്</div><div class="category">മുഅല്ലിം</div></div>
-        <div class="card" data-time="11:40" data-endtime="12:00"><span class="time-badge">11.40 - 12.00</span><div class="event-title">703-മാപ്പിളപ്പാട്ട്</div><div class="category">അലുംനി</div></div>
-        <div class="card" data-time="12:05" data-endtime="12:30"><span class="time-badge">12.05 - 12.30</span><div class="event-title">504-പ്രസംഗം</div><div class="category">സൂപ്പർ സീനിയർ</div></div>
-        <div class="card" data-time="12:35" data-endtime="13:00"><span class="time-badge">12.35 - 01.00</span><div class="event-title">505-ഇസ്‌ലാമിക ഗാനം അറബി</div><div class="category">സൂപ്പർ സീനിയർ</div></div>
-        
-        <div class="card break"><span class="time-badge">01.00 - 02.00</span><div class="event-title">നിസ്കാരം, ഭക്ഷണം & വിശ്രമം</div></div>
-        
-        <div class="card" data-time="14:00" data-endtime="15:00"><span class="time-badge">02.00 - 03.00</span><div class="event-title">506-പാടിപ്പറയൽ</div><div class="category">സൂപ്പർ സീനിയർ</div></div>
-        <div class="card" data-time="15:10" data-endtime="16:10"><span class="time-badge">03.10 - 04.10</span><div class="event-title">304-പ്രസംഗം</div><div class="category">ജൂനിയർ</div></div>
-        
-        <div class="card break"><span class="time-badge">04.20 - 04.40</span><div class="event-title">അസർ നിസ്കാരം & ചായ</div></div>
-        
-        <div class="card" data-time="16:40" data-endtime="17:30"><span class="time-badge">04.40 - 05.30</span><div class="event-title">305-അറബി ഗാനം</div><div class="category">ജൂനിയർ</div></div>
-        <div class="card" data-time="17:35" data-endtime="18:15"><span class="time-badge">05.35 - 06.15</span><div class="event-title">308-ഉർദു ഗാനം</div><div class="category">ജൂനിയർ</div></div>
+
+        <div class="card" data-time="08:30" data-endtime="09:30">
+            <span class="time-badge">08.30 - 09.30</span>
+            <div class="event-title">306-ഇസ്‌ലാമിക ഗാനം</div>
+            <div class="category">ജൂനിയർ</div>
+        </div>
+
+        <div class="card" data-time="09:40" data-endtime="10:30">
+            <span class="time-badge">09.40 - 10.30</span>
+            <div class="event-title">404-ഇസ്‌ലാമിക് ഗാനം അറബി</div>
+            <div class="category">സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="10:35" data-endtime="11:10">
+            <span class="time-badge">10.35 - 11.10</span>
+            <div class="event-title">102-കഥാകഥനം</div>
+            <div class="category">കിഡ്ഡീസ്</div>
+        </div>
+
+        <div class="card" data-time="11:20" data-endtime="11:30">
+            <span class="time-badge">11.20 - 11.30</span>
+            <div class="event-title">907-സമസ്ത ഖിസ്സപ്പാട്ട്</div>
+            <div class="category">മുഅല്ലിം</div>
+        </div>
+
+        <div class="card" data-time="11:40" data-endtime="12:00">
+            <span class="time-badge">11.40 - 12.00</span>
+            <div class="event-title">703-മാപ്പിളപ്പാട്ട്</div>
+            <div class="category">അലുംനി</div>
+        </div>
+
+        <div class="card" data-time="12:05" data-endtime="12:30">
+            <span class="time-badge">12.05 - 12.30</span>
+            <div class="event-title">504-പ്രസംഗം</div>
+            <div class="category">സൂപ്പർ സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="12:35" data-endtime="13:00">
+            <span class="time-badge">12.35 - 01.00</span>
+            <div class="event-title">505-ഇസ്‌ലാമിക ഗാനം അറബി</div>
+            <div class="category">സൂപ്പർ സീനിയർ</div>
+        </div>
+
+        <div class="card break">
+            <span class="time-badge">01.00 - 02.00</span>
+            <div class="event-title">നിസ്കാരം, ഭക്ഷണം & വിശ്രമം</div>
+        </div>
+
+        <div class="card" data-time="14:00" data-endtime="15:00">
+            <span class="time-badge">02.00 - 03.00</span>
+            <div class="event-title">506-പാടിപ്പറയൽ</div>
+            <div class="category">സൂപ്പർ സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="15:10" data-endtime="16:10">
+            <span class="time-badge">03.10 - 04.10</span>
+            <div class="event-title">304-പ്രസംഗം</div>
+            <div class="category">ജൂനിയർ</div>
+        </div>
+
+        <div class="card break">
+            <span class="time-badge">04.20 - 04.40</span>
+            <div class="event-title">അസർ നിസ്കാരം & ചായ</div>
+        </div>
+
+        <div class="card" data-time="16:40" data-endtime="17:30">
+            <span class="time-badge">04.40 - 05.30</span>
+            <div class="event-title">305-അറബി ഗാനം</div>
+            <div class="category">ജൂനിയർ</div>
+        </div>
+
+        <div class="card" data-time="17:35" data-endtime="18:15">
+            <span class="time-badge">05.35 - 06.15</span>
+            <div class="event-title">308-ഉർദു ഗാനം</div>
+            <div class="category">ജൂനിയർ</div>
+        </div>
     </div>
 
     <!-- വേദി 3 -->
     <div id="v3" class="venue-content">
-        <div class="card" data-time="08:30" data-endtime="08:40"><span class="time-badge">08.30 - 08.40</span><div class="event-title">904-അറബിപ്രസംഗം</div><div class="category">മുഅല്ലിം</div></div>
-        <div class="card" data-time="08:45" data-endtime="09:00"><span class="time-badge">08.45 - 09.00</span><div class="event-title">704-മാസ്റ്റർ ഹണ്ട്</div><div class="category">അലുംനി</div></div>
-        <div class="card" data-time="09:10" data-endtime="09:55"><span class="time-badge">09.10 - 09.55</span><div class="event-title">705&909-ഡിജിറ്റൽ പോസ്റ്റർ ഡിസൈനിങ്</div><div class="category">അലുംനി & മുഅല്ലിം</div></div>
-        <div class="card" data-time="09:30" data-endtime="10:20"><span class="time-badge">09.30 - 10.20</span><div class="event-title">302-ഹിഫ്ള്</div><div class="category">ജൂനിയർ</div></div>
-        <div class="card" data-time="10:25" data-endtime="10:35"><span class="time-badge">10.25 - 10.35</span><div class="event-title">701-നിമിഷ പ്രസംഗം</div><div class="category">അലുംനി</div></div>
-        <div class="card" data-time="10:40" data-endtime="11:10"><span class="time-badge">10.40 - 11.10</span><div class="event-title">503-അറബി പ്രസംഗം</div><div class="category">സൂപ്പർ സീനിയർ</div></div>
-        <div class="card" data-time="11:15" data-endtime="12:05"><span class="time-badge">11.15 - 12.05</span><div class="event-title">405-പ്രസംഗം</div><div class="category">സീനിയർ</div></div>
-        <div class="card" data-time="12:10" data-endtime="12:50"><span class="time-badge">12.10 - 12.50</span><div class="event-title">403-ബാങ്ക്</div><div class="category">സീനിയർ</div></div>
-        
-        <div class="card break"><span class="time-badge">12.50 - 01.50</span><div class="event-title">നിസ്കാരം, ഭക്ഷണം & വിശ്രമം</div></div>
-        
-        <div class="card" data-time="14:00" data-endtime="14:50"><span class="time-badge">02.00 - 02.50</span><div class="event-title">406-ഇംഗ്ലീഷ് പ്രസംഗം</div><div class="category">സീനിയർ</div></div>
-        <div class="card" data-time="15:00" data-endtime="15:40"><span class="time-badge">03.00 - 03.40</span><div class="event-title">407-ഉർദു പ്രസംഗം</div><div class="category">സീനിയർ</div></div>
-        
-        <div class="card break"><span class="time-badge">03.45 - 04.15</span><div class="event-title">അസർ നിസ്കാരം & ചായ</div></div>
-        
-        <div class="card" data-time="16:20" data-endtime="16:30"><span class="time-badge">04.20 - 04.30</span><div class="event-title">905-നിമിഷ പ്രസംഗം</div><div class="category">മുഅല്ലിം</div></div>
-        <div class="card" data-time="16:35" data-endtime="17:10"><span class="time-badge">04.35 - 05.10</span><div class="event-title">303-ബാങ്ക്</div><div class="category">ജൂനിയർ</div></div>
-        <div class="card" data-time="17:15" data-endtime="17:45"><span class="time-badge">05.15 - 05.45</span><div class="event-title">410-ക്വിസ്</div><div class="category">സീനിയർ</div></div>
-        <div class="card" data-time="17:50" data-endtime="18:10"><span class="time-badge">05.50 - 06.10</span><div class="event-title">205-ഓർമ്മ പരിശോധന</div><div class="category">സബ്ജൂനിയർ</div></div>
-        <div class="card" data-time="17:55" data-endtime="18:15"><span class="time-badge">05.55 - 06.15</span><div class="event-title">311-കുരുന്നുകൾ ടെസ്റ്റ്</div><div class="category">ജൂനിയർ</div></div>
+
+        <div class="card" data-time="08:30" data-endtime="08:40">
+            <span class="time-badge">08.30 - 08.40</span>
+            <div class="event-title">904-അറബിപ്രസംഗം</div>
+            <div class="category">മുഅല്ലിം</div>
+        </div>
+
+        <div class="card" data-time="08:45" data-endtime="09:00">
+            <span class="time-badge">08.45 - 09.00</span>
+            <div class="event-title">704-മാസ്റ്റർ ഹണ്ട്</div>
+            <div class="category">അലുംനി</div>
+        </div>
+
+        <div class="card" data-time="09:10" data-endtime="09:55">
+            <span class="time-badge">09.10 - 09.55</span>
+            <div class="event-title">705&909-ഡിജിറ്റൽ പോസ്റ്റർ ഡിസൈനിങ്</div>
+            <div class="category">അലുംനി & മുഅല്ലിം</div>
+        </div>
+
+        <div class="card" data-time="09:30" data-endtime="10:20">
+            <span class="time-badge">09.30 - 10.20</span>
+            <div class="event-title">302-ഹിഫ്ള്</div>
+            <div class="category">ജൂനിയർ</div>
+        </div>
+
+        <div class="card" data-time="10:25" data-endtime="10:35">
+            <span class="time-badge">10.25 - 10.35</span>
+            <div class="event-title">701-നിമിഷ പ്രസംഗം</div>
+            <div class="category">അലുംനി</div>
+        </div>
+
+        <div class="card" data-time="10:40" data-endtime="11:10">
+            <span class="time-badge">10.40 - 11.10</span>
+            <div class="event-title">503-അറബി പ്രസംഗം</div>
+            <div class="category">സൂപ്പർ സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="11:15" data-endtime="12:05">
+            <span class="time-badge">11.15 - 12.05</span>
+            <div class="event-title">405-പ്രസംഗം</div>
+            <div class="category">സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="12:10" data-endtime="12:50">
+            <span class="time-badge">12.10 - 12.50</span>
+            <div class="event-title">403-ബാങ്ക്</div>
+            <div class="category">സീനിയർ</div>
+        </div>
+
+        <div class="card break">
+            <span class="time-badge">12.50 - 01.50</span>
+            <div class="event-title">നിസ്കാരം, ഭക്ഷണം & വിശ്രമം</div>
+        </div>
+
+        <div class="card" data-time="14:00" data-endtime="14:50">
+            <span class="time-badge">02.00 - 02.50</span>
+            <div class="event-title">406-ഇംഗ്ലീഷ് പ്രസംഗം</div>
+            <div class="category">സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="15:00" data-endtime="15:40">
+            <span class="time-badge">03.00 - 03.40</span>
+            <div class="event-title">407-ഉർദു പ്രസംഗം</div>
+            <div class="category">സീനിയർ</div>
+        </div>
+
+        <div class="card break">
+            <span class="time-badge">03.45 - 04.15</span>
+            <div class="event-title">അസർ നിസ്കാരം & ചായ</div>
+        </div>
+
+        <div class="card" data-time="16:20" data-endtime="16:30">
+            <span class="time-badge">04.20 - 04.30</span>
+            <div class="event-title">905-നിമിഷ പ്രസംഗം</div>
+            <div class="category">മുഅല്ലിം</div>
+        </div>
+
+        <div class="card" data-time="16:35" data-endtime="17:10">
+            <span class="time-badge">04.35 - 05.10</span>
+            <div class="event-title">303-ബാങ്ക്</div>
+            <div class="category">ജൂനിയർ</div>
+        </div>
+
+        <div class="card" data-time="17:15" data-endtime="17:45">
+            <span class="time-badge">05.15 - 05.45</span>
+            <div class="event-title">410-ക്വിസ്</div>
+            <div class="category">സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="17:50" data-endtime="18:10">
+            <span class="time-badge">05.50 - 06.10</span>
+            <div class="event-title">205-ഓർമ്മ പരിശോധന</div>
+            <div class="category">സബ്ജൂനിയർ</div>
+        </div>
+
+        <div class="card" data-time="17:55" data-endtime="18:15">
+            <span class="time-badge">05.55 - 06.15</span>
+            <div class="event-title">311-കുരുന്നുകൾ ടെസ്റ്റ്</div>
+            <div class="category">ജൂനിയർ</div>
+        </div>
     </div>
 
     <!-- വേദി 4 -->
     <div id="v4" class="venue-content">
-        <div class="card" data-time="08:30" data-endtime="09:00"><span class="time-badge">08.30 - 09.00</span><div class="event-title">501-ഖിറാഅത്ത്</div><div class="category">സൂപ്പർ സീനിയർ</div></div>
-        <div class="card" data-time="09:05" data-endtime="09:50"><span class="time-badge">09.05 - 09.50</span><div class="event-title">201-ഖിറാഅത്ത്</div><div class="category">സബ്ജൂനിയർ</div></div>
-        <div class="card" data-time="09:55" data-endtime="10:15"><span class="time-badge">09.55 - 10.15</span><div class="event-title">901-ഹിസ്‌ബ്</div><div class="category">മുഅല്ലിം</div></div>
-        <div class="card" data-time="10:20" data-endtime="11:10"><span class="time-badge">10.20 - 11.10</span><div class="event-title">502-ഹിഫ്ള്</div><div class="category">സൂപ്പർ സീനിയർ</div></div>
-        <div class="card" data-time="11:15" data-endtime="12:00"><span class="time-badge">11.15 - 12.00</span><div class="event-title">401-ഖിറാഅത്ത്</div><div class="category">സീനിയർ</div></div>
-        <div class="card" data-time="12:05" data-endtime="12:15"><span class="time-badge">12.05 - 12.15</span><div class="event-title">902-ഹിഫ്ള്</div><div class="category">മുഅല്ലിം</div></div>
-        <div class="card" data-time="12:15" data-endtime="12:30"><span class="time-badge">12.15 - 12.30</span><div class="event-title">903-ബാങ്ക്</div><div class="category">മുഅല്ലിം</div></div>
-        <div class="card" data-time="12:35" data-endtime="13:00"><span class="time-badge">12.35 - 01.00</span><div class="event-title">509-അറബി പദപയറ്റ്</div><div class="category">സൂപ്പർ സീനിയർ</div></div>
-        
-        <div class="card break"><span class="time-badge">01.00 - 02.00</span><div class="event-title">നിസ്കാരം, ഭക്ഷണം & വിശ്രമം</div></div>
-        
-        <div class="card" data-time="14:00" data-endtime="15:00"><span class="time-badge">02.00 - 03.00</span><div class="event-title">402-ഹിഫ്ള്</div><div class="category">സീനിയർ</div></div>
-        <div class="card" data-time="15:10" data-endtime="15:55"><span class="time-badge">03.10 - 03.55</span><div class="event-title">301-ഖിറാഅത്ത്</div><div class="category">ജൂനിയർ</div></div>
-        
-        <div class="card break"><span class="time-badge">03.55 - 04.25</span><div class="event-title">അസർ നിസ്കാരം & ചായ</div></div>
-        
-        <div class="card" data-time="16:30" data-endtime="17:15"><span class="time-badge">04.30 - 05.15</span><div class="event-title">202-ഹിഫ്ള്</div><div class="category">സബ്ജൂനിയർ</div></div>
-        <div class="card" data-time="17:20" data-endtime="17:45"><span class="time-badge">05.20 - 05.45</span><div class="event-title">101-ഫാത്തിഹ പാരായണം</div><div class="category">കിഡ്ഡീസ്</div></div>
-        <div class="card" data-time="17:50" data-endtime="18:00"><span class="time-badge">05.50 - 06.00</span><div class="event-title">908-മുനാഖശ</div><div class="category">മുഅല്ലിം</div></div>
-        <div class="card" data-time="18:00" data-endtime="18:10"><span class="time-badge">06.00 - 06.10</span><div class="event-title">910-മുശാഅറ</div><div class="category">മുഅല്ലിം</div></div>
+
+        <div class="card" data-time="08:30" data-endtime="09:00">
+            <span class="time-badge">08.30 - 09.00</span>
+            <div class="event-title">501-ഖിറാഅത്ത്</div>
+            <div class="category">സൂപ്പർ സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="09:05" data-endtime="09:50">
+            <span class="time-badge">09.05 - 09.50</span>
+            <div class="event-title">201-ഖിറാഅത്ത്</div>
+            <div class="category">സബ്ജൂനിയർ</div>
+        </div>
+
+        <div class="card" data-time="09:55" data-endtime="10:15">
+            <span class="time-badge">09.55 - 10.15</span>
+            <div class="event-title">901-ഹിസ്‌ബ്</div>
+            <div class="category">മുഅല്ലിം</div>
+        </div>
+
+        <div class="card" data-time="10:20" data-endtime="11:10">
+            <span class="time-badge">10.20 - 11.10</span>
+            <div class="event-title">502-ഹിഫ്ള്</div>
+            <div class="category">സൂപ്പർ സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="11:15" data-endtime="12:00">
+            <span class="time-badge">11.15 - 12.00</span>
+            <div class="event-title">401-ഖിറാഅത്ത്</div>
+            <div class="category">സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="12:05" data-endtime="12:15">
+            <span class="time-badge">12.05 - 12.15</span>
+            <div class="event-title">902-ഹിഫ്ള്</div>
+            <div class="category">മുഅല്ലിം</div>
+        </div>
+
+        <div class="card" data-time="12:15" data-endtime="12:30">
+            <span class="time-badge">12.15 - 12.30</span>
+            <div class="event-title">903-ബാങ്ക്</div>
+            <div class="category">മുഅല്ലിം</div>
+        </div>
+
+        <div class="card" data-time="12:35" data-endtime="13:00">
+            <span class="time-badge">12.35 - 01.00</span>
+            <div class="event-title">509-അറബി പദപയറ്റ്</div>
+            <div class="category">സൂപ്പർ സീനിയർ</div>
+        </div>
+
+        <div class="card break">
+            <span class="time-badge">01.00 - 02.00</span>
+            <div class="event-title">നിസ്കാരം, ഭക്ഷണം & വിശ്രമം</div>
+        </div>
+
+        <div class="card" data-time="14:00" data-endtime="15:00">
+            <span class="time-badge">02.00 - 03.00</span>
+            <div class="event-title">402-ഹിഫ്ള്</div>
+            <div class="category">സീനിയർ</div>
+        </div>
+
+        <div class="card" data-time="15:10" data-endtime="15:55">
+            <span class="time-badge">03.10 - 03.55</span>
+            <div class="event-title">301-ഖിറാഅത്ത്</div>
+            <div class="category">ജൂനിയർ</div>
+        </div>
+
+        <div class="card break">
+            <span class="time-badge">03.55 - 04.25</span>
+            <div class="event-title">അസർ നിസ്കാരം & ചായ</div>
+        </div>
+
+        <div class="card" data-time="16:30" data-endtime="17:15">
+            <span class="time-badge">04.30 - 05.15</span>
+            <div class="event-title">202-ഹിഫ്ള്</div>
+            <div class="category">സബ്ജൂനിയർ</div>
+        </div>
+
+        <div class="card" data-time="17:20" data-endtime="17:45">
+            <span class="time-badge">05.20 - 05.45</span>
+            <div class="event-title">101-ഫാത്തിഹ പാരായണം</div>
+            <div class="category">കിഡ്ഡീസ്</div>
+        </div>
+
+        <div class="card" data-time="17:50" data-endtime="18:00">
+            <span class="time-badge">05.50 - 06.00</span>
+            <div class="event-title">908-മുനാഖശ</div>
+            <div class="category">മുഅല്ലിം</div>
+        </div>
+
+        <div class="card" data-time="18:00" data-endtime="18:10">
+            <span class="time-badge">06.00 - 06.10</span>
+            <div class="event-title">910-മുശാഅറ</div>
+            <div class="category">മുഅല്ലിം</div>
+        </div>
     </div>
 
     <script>
         function openVenue(venueId, btn) {
             var contents = document.querySelectorAll('.venue-content');
             contents.forEach(c => c.classList.remove('active'));
-            
+
             var buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(b => b.classList.remove('active'));
-            
+
             document.getElementById(venueId).classList.add('active');
             btn.classList.add('active');
         }
@@ -319,33 +640,32 @@ body {
             allCards.forEach(card => {
                 var title = card.querySelector('.event-title').innerText.toLowerCase();
                 var category = card.querySelector('.category').innerText.toLowerCase();
-                
-                // കോഡ് അല്ലെങ്കിൽ ഇനത്തിന്റെ പേര് അല്ലെങ്കിൽ വിഭാഗം (Category) മാച്ച് ചെയ്യുന്നുണ്ടോ എന്ന് പരിശോധിക്കുന്നു
+
                 if (title.includes(query) || category.includes(query)) {
                     var venueId = card.parentElement.id;
-                    var venueName = venueId === 'v1' ? 'വേദി 1' : venueId === 'v2' ? 'വേദി 2' : venueId === 'v3' ? 'വേദി 3' : 'വേദി 4';
-                    var timeText = card.querySelector('.time-badge').innerText;
-                    var categoryText = card.querySelector('.category').innerText;
-                    var titleText = card.querySelector('.event-title').innerText;
-                    var startTime = card.getAttribute('data-time');
-                    var endTime = card.getAttribute('data-endtime');
+                    var venueName =
+                        venueId === 'v1' ? 'വേദി 1' :
+                        venueId === 'v2' ? 'വേദി 2' :
+                        venueId === 'v3' ? 'വേദി 3' : 'വേദി 4';
 
                     matches.push({
-                        title: titleText,
+                        title: card.querySelector('.event-title').innerText,
                         venue: venueName,
-                        time: timeText,
-                        category: categoryText,
-                        startTime: startTime,
-                        endTime: endTime
+                        time: card.querySelector('.time-badge').innerText,
+                        category: card.querySelector('.category').innerText,
+                        startTime: card.getAttribute('data-time'),
+                        endTime: card.getAttribute('data-endtime')
                     });
                 }
             });
 
             if (matches.length > 0) {
                 resultDiv.style.display = 'block';
+
                 matches.forEach(item => {
                     var countdownText = getCountdownText(item.startTime, item.endTime);
-                    var html = `
+
+                    resultDiv.innerHTML += `
                         <div class="card">
                             <span class="venue-badge">${item.venue}</span>
                             <span class="time-badge">${item.time}</span>
@@ -354,11 +674,11 @@ body {
                             <div class="category">${item.category}</div>
                         </div>
                     `;
-                    resultDiv.innerHTML += html;
                 });
             } else {
                 resultDiv.style.display = 'block';
-                resultDiv.innerHTML = '<div style="color: #666; font-size: 13px; text-align: center; padding: 10px;">ഇനം കണ്ടെത്തിയില്ല! ഇനത്തിന്റെ പേരോ കോഡോ മാറ്റി സെർച്ച് ചെയ്തു നോക്കുക.</div>';
+                resultDiv.innerHTML =
+                    '<div style="color:#666;font-size:13px;text-align:center;padding:10px;">ഇനം കണ്ടെത്തിയില്ല! ഇനത്തിന്റെ പേരോ കോഡോ മാറ്റി സെർച്ച് ചെയ്തു നോക്കുക.</div>';
             }
         }
 
@@ -367,7 +687,7 @@ body {
 
             var now = new Date();
             var eventYear = 2026;
-            var eventMonth = 9; // October (0-indexed in JS, so 9 = October)
+            var eventMonth = 9;
             var eventDate = 10;
 
             var start = new Date(eventYear, eventMonth, eventDate);
@@ -392,6 +712,7 @@ body {
                 var mins = diffMins % 60;
 
                 var timeRemaining = '';
+
                 if (diffDays > 0) {
                     timeRemaining = diffDays + ' ദിവസം ' + hours + ' മണിക്കൂർ';
                 } else if (hours > 0) {
@@ -403,33 +724,58 @@ body {
                 return `<span class="status-badge status-upcoming">തുടങ്ങാൻ ഇനി: ${timeRemaining}</span>`;
             }
         }
-     function updateCountdown() {
-    const target = new Date("2026-10-10T08:30:00+05:30").getTime();
-    const now = new Date().getTime();
-    const difference = target - now;
 
-    const countdown = document.getElementById("countdown");
-    if (!countdown) return;
+        /* MAIN COUNTDOWN */
+        function updateCountdown() {
+            const target =
+                new Date("2026-10-10T08:30:00+05:30").getTime();
 
-    if (difference <= 0) {
-        countdown.innerHTML = "<span>🎉<br>മുസാബഖ<br>ആരംഭിച്ചു!</span>";
-        return;
-    }
+            const now = new Date().getTime();
+            const difference = target - now;
 
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((difference / (1000 * 60)) % 60);
-    const seconds = Math.floor((difference / 1000) % 60);
+            const countdown = document.getElementById("countdown");
 
-    countdown.innerHTML =
-        "<span>📅<br>" + days + "<small> ദിവസം</small></span>" +
-        "<span>🕐<br>" + hours + "<small> മണിക്കൂർ</small></span>" +
-        "<span>⏱️<br>" + minutes + "<small> മിനിറ്റ്</small></span>" +
-        "<span>⚡<br>" + seconds + "<small> സെക്കന്റ്</small></span>";
-}
+            if (!countdown) return;
 
-updateCountdown();
-setInterval(updateCountdown, 1000); </script>
-</script>
+            if (difference <= 0) {
+                countdown.innerHTML =
+                    "<span>🎉<br>മുസാബഖ<br>ആരംഭിച്ചു!</span>";
+                return;
+            }
+
+            const days =
+                Math.floor(difference / (1000 * 60 * 60 * 24));
+
+            const hours =
+                Math.floor((difference / (1000 * 60 * 60)) % 24);
+
+            const minutes =
+                Math.floor((difference / (1000 * 60)) % 60);
+
+            const seconds =
+                Math.floor((difference / 1000) % 60);
+
+            countdown.innerHTML =
+                "<span>📅<br>" +
+                days +
+                "<small> ദിവസം</small></span>" +
+
+                "<span>🕐<br>" +
+                hours +
+                "<small> മണിക്കൂർ</small></span>" +
+
+                "<span>⏱️<br>" +
+                minutes +
+                "<small> മിനിറ്റ്</small></span>" +
+
+                "<span>⚡<br>" +
+                seconds +
+                "<small> സെക്കന്റ്</small></span>";
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+
 </body>
 </html>
