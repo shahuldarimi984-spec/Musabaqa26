@@ -254,12 +254,23 @@
   </p>
 
   <!-- മത്സരം -->
-  <input id="posterSection"
-    type="text"
-    placeholder="വിഭാഗം (ഉദാ: SUB JUNIOR BOYS)"
-    oninput="updatePoster()"
-    style="width:100%; box-sizing:border-box; padding:12px; margin:6px 0; border:1px solid #ddd; border-radius:10px;">
+<select id="posterSection" onchange="loadPosterItems()"
+  style="width:100%; box-sizing:border-box; padding:15px; border-radius:12px; border:1px solid #ddd; font-size:16px; margin-bottom:12px;">
 
+  <option value="">വിഭാഗം തിരഞ്ഞെടുക്കുക</option>
+  <option value="kiddies">Kiddies</option>
+  <option value="subjunior">Sub Junior Boys</option>
+  <option value="junior">Junior Boys</option>
+  <option value="senior">Senior Boys</option>
+  <option value="supersenior">Super Senior Boys</option>
+  <option value="subjuniorgirls">Sub Junior Girls</option>
+  <option value="juniorgirls">Junior Girls</option>
+  <option value="seniorgirls">Senior Girls</option>
+  <option value="general">General</option>
+  <option value="alumni">Alumni</option>
+  <option value="muallim">Muallim</option>
+
+</select>
   <input id="posterItem"
     type="text"
     placeholder="മത്സര ഇനം (ഉദാ: 204 - Hand writing Arabic Malayalam)"
