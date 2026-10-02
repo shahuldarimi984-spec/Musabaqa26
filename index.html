@@ -241,6 +241,221 @@
     🏆 പോസ്റ്റർ നിർമ്മിക്കാം
   </button>
 </div>
+    <!-- POSTER MAKER -->
+<div id="posterMaker"
+     style="display:none; background:#fff; margin:20px 0; padding:18px; border-radius:18px; box-shadow:0 4px 18px rgba(0,0,0,.12);">
+
+  <h3 style="text-align:center; color:#173b2a; margin-top:0;">
+    🏆 പോസ്റ്റർ നിർമ്മിക്കാം
+  </h3>
+
+  <p style="text-align:center; color:#666;">
+    മത്സരത്തിന്റെ ഫലം ഉപയോഗിച്ച് പോസ്റ്റർ തയ്യാറാക്കാം
+  </p>
+
+  <!-- മത്സരം -->
+  <input id="posterSection"
+    type="text"
+    placeholder="വിഭാഗം (ഉദാ: SUB JUNIOR BOYS)"
+    oninput="updatePoster()"
+    style="width:100%; box-sizing:border-box; padding:12px; margin:6px 0; border:1px solid #ddd; border-radius:10px;">
+
+  <input id="posterItem"
+    type="text"
+    placeholder="മത്സര ഇനം (ഉദാ: 204 - Hand writing Arabic Malayalam)"
+    oninput="updatePoster()"
+    style="width:100%; box-sizing:border-box; padding:12px; margin:6px 0; border:1px solid #ddd; border-radius:10px;">
+
+  <!-- POSTER PREVIEW -->
+  <div id="posterPreview"
+       style="margin-top:18px; background:linear-gradient(160deg,#0b6048,#08785b); color:white; padding:18px; border-radius:18px; text-align:center; border:4px solid #d4af37;">
+
+    <div style="font-size:22px; font-weight:bold;">
+      THAMARASSERY RJM
+    </div>
+
+    <div style="font-size:27px; font-weight:bold; color:#ffd84d;">
+      MUSABAQA
+    </div>
+
+    <div id="previewSection"
+         style="margin-top:12px; font-size:16px; font-weight:bold;">
+      വിഭാഗം
+    </div>
+
+    <div id="previewItem"
+         style="font-size:18px; font-weight:bold; margin-top:4px;">
+      മത്സര ഇനം
+    </div>
+
+    <!-- WINNERS -->
+    <div style="display:flex; align-items:flex-end; justify-content:center; gap:8px; margin-top:22px;">
+
+      <!-- 2nd -->
+      <div style="width:30%;">
+        <div style="font-size:14px; color:#ffd84d; font-weight:bold;">🥈 2nd</div>
+
+        <img id="photo2"
+             src=""
+             style="width:75px; height:75px; object-fit:cover; border-radius:50%; background:#eee; margin:6px auto; display:block;">
+
+        <div id="name2Preview" style="font-weight:bold; font-size:13px;">
+          പേര്
+        </div>
+
+        <div id="madrasa2Preview" style="font-size:11px;">
+          മദ്റസ
+        </div>
+
+        <input type="file"
+               accept="image/*"
+               onchange="loadWinnerPhoto(this,'photo2')"
+               style="width:100%; font-size:10px; margin-top:6px;">
+      </div>
+
+      <!-- 1st -->
+      <div style="width:34%;">
+        <div style="font-size:16px; color:#ffd84d; font-weight:bold;">🏆 1st</div>
+
+        <img id="photo1"
+             src=""
+             style="width:100px; height:100px; object-fit:cover; border-radius:50%; background:#eee; margin:6px auto; display:block; border:3px solid #ffd84d;">
+
+        <div id="name1Preview" style="font-weight:bold; font-size:15px;">
+          പേര്
+        </div>
+
+        <div id="madrasa1Preview" style="font-size:12px;">
+          മദ്റസ
+        </div>
+
+        <input type="file"
+               accept="image/*"
+               onchange="loadWinnerPhoto(this,'photo1')"
+               style="width:100%; font-size:10px; margin-top:6px;">
+      </div>
+
+      <!-- 3rd -->
+      <div style="width:30%;">
+        <div style="font-size:14px; color:#ffd84d; font-weight:bold;">🥉 3rd</div>
+
+        <img id="photo3"
+             src=""
+             style="width:75px; height:75px; object-fit:cover; border-radius:50%; background:#eee; margin:6px auto; display:block;">
+
+        <div id="name3Preview" style="font-weight:bold; font-size:13px;">
+          പേര്
+        </div>
+
+        <div id="madrasa3Preview" style="font-size:11px;">
+          മദ്റസ
+        </div>
+
+        <input type="file"
+               accept="image/*"
+               onchange="loadWinnerPhoto(this,'photo3')"
+               style="width:100%; font-size:10px; margin-top:6px;">
+      </div>
+
+    </div>
+
+    <div style="margin-top:18px; font-size:14px; color:#ffe98a;">
+      2026 ഒക്ടോബർ 10 ശനിയാഴ്ച
+    </div>
+
+  </div>
+
+  <!-- WINNER DETAILS -->
+  <div style="margin-top:15px;">
+
+    <input id="name1"
+      type="text"
+      placeholder="🥇 ഒന്നാം സ്ഥാനം - പേര്"
+      oninput="updatePoster()"
+      style="width:100%; box-sizing:border-box; padding:11px; margin:4px 0; border:1px solid #ddd; border-radius:10px;">
+
+    <input id="madrasa1"
+      type="text"
+      placeholder="ഒന്നാം സ്ഥാനം - മദ്റസ"
+      oninput="updatePoster()"
+      style="width:100%; box-sizing:border-box; padding:11px; margin:4px 0; border:1px solid #ddd; border-radius:10px;">
+
+    <input id="name2"
+      type="text"
+      placeholder="🥈 രണ്ടാം സ്ഥാനം - പേര്"
+      oninput="updatePoster()"
+      style="width:100%; box-sizing:border-box; padding:11px; margin:4px 0; border:1px solid #ddd; border-radius:10px;">
+
+    <input id="madrasa2"
+      type="text"
+      placeholder="രണ്ടാം സ്ഥാനം - മദ്റസ"
+      oninput="updatePoster()"
+      style="width:100%; box-sizing:border-box; padding:11px; margin:4px 0; border:1px solid #ddd; border-radius:10px;">
+
+    <input id="name3"
+      type="text"
+      placeholder="🥉 മൂന്നാം സ്ഥാനം - പേര്"
+      oninput="updatePoster()"
+      style="width:100%; box-sizing:border-box; padding:11px; margin:4px 0; border:1px solid #ddd; border-radius:10px;">
+
+    <input id="madrasa3"
+      type="text"
+      placeholder="മൂന്നാം സ്ഥാനം - മദ്റസ"
+      oninput="updatePoster()"
+      style="width:100%; box-sizing:border-box; padding:11px; margin:4px 0; border:1px solid #ddd; border-radius:10px;">
+
+  </div>
+
+  <button
+    onclick="closePosterMaker()"
+    style="display:block; margin:15px auto 5px; padding:10px 25px; border:0; border-radius:10px; background:#eee; font-weight:bold;">
+    അടയ്ക്കുക
+  </button>
+
+</div>
+
+<script>
+function updatePoster() {
+
+  document.getElementById("previewSection").innerText =
+    document.getElementById("posterSection").value || "വിഭാഗം";
+
+  document.getElementById("previewItem").innerText =
+    document.getElementById("posterItem").value || "മത്സര ഇനം";
+
+  document.getElementById("name1Preview").innerText =
+    document.getElementById("name1").value || "പേര്";
+
+  document.getElementById("madrasa1Preview").innerText =
+    document.getElementById("madrasa1").value || "മദ്റസ";
+
+  document.getElementById("name2Preview").innerText =
+    document.getElementById("name2").value || "പേര്";
+
+  document.getElementById("madrasa2Preview").innerText =
+    document.getElementById("madrasa2").value || "മദ്റസ";
+
+  document.getElementById("name3Preview").innerText =
+    document.getElementById("name3").value || "പേര്";
+
+  document.getElementById("madrasa3Preview").innerText =
+    document.getElementById("madrasa3").value || "മദ്റസ";
+}
+
+function loadWinnerPhoto(input, imageId) {
+
+  if (input.files && input.files[0]) {
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      document.getElementById(imageId).src = e.target.result;
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+</script>
     <!-- Search Section -->
     <div class="search-box">
         <input
