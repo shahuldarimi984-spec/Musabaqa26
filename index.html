@@ -271,12 +271,12 @@
   <option value="muallim">Muallim</option>
 
 </select>
-  <input id="posterItem"
-    type="text"
-    placeholder="മത്സര ഇനം (ഉദാ: 204 - Hand writing Arabic Malayalam)"
-    oninput="updatePoster()"
-    style="width:100%; box-sizing:border-box; padding:12px; margin:6px 0; border:1px solid #ddd; border-radius:10px;">
+  <select id="posterItem" onchange="updatePoster()"
+  style="width:100%; box-sizing:border-box; padding:15px; border-radius:12px; border:1px solid #ddd; font-size:16px;">
 
+  <option value="">ആദ്യം വിഭാഗം തിരഞ്ഞെടുക്കുക</option>
+
+  </select>
   <!-- POSTER PREVIEW -->
   <div id="posterPreview"
        style="margin-top:18px; background:linear-gradient(160deg,#0b6048,#08785b); color:white; padding:18px; border-radius:18px; text-align:center; border:4px solid #d4af37;">
