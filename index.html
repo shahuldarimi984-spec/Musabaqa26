@@ -466,6 +466,122 @@ function loadWinnerPhoto(input, imageId) {
     reader.readAsDataURL(input.files[0]);
   }
 }
+    const posterItemsBySection = {
+  kiddies: [
+    "101 - Fathiha Recitation",
+    "102 - Story Telling"
+  ],
+
+  subjunior: [
+    "201 - Qira'ath",
+    "202 - Hifl",
+    "203 - Mad'hunnabi Song",
+    "204 - Hand writing Arabic Malayalam",
+    "205 - Memory Test"
+  ],
+
+  junior: [
+    "301 - Qira'ath",
+    "302 - Hifl",
+    "303 - Adaan",
+    "304 - Elocution",
+    "305 - Arabic Song",
+    "306 - Islamic Song",
+    "307 - Islamic Group Song",
+    "308 - Urdu Song",
+    "309 - Arabic Hand writing",
+    "310 - Painting (Water color)",
+    "311 - Kurunnukal Test"
+  ],
+
+  senior: [
+    "401 - Qira'ath",
+    "402 - Hifl",
+    "403 - Adaan",
+    "404 - Islamic Song Arabic",
+    "405 - Elocution",
+    "406 - English Elocution",
+    "407 - Urdu Elocution",
+    "408 - Mappilappattu",
+    "409 - Arabic Calligraphy",
+    "410 - Quiz"
+  ],
+
+  supersenior: [
+    "501 - Qira'ath",
+    "502 - Hifl",
+    "503 - Arabic Elocution",
+    "504 - Elocution",
+    "505 - Islamic Song Arabic",
+    "506 - Speech and Song",
+    "507 - Mappilappattu",
+    "508 - Essay writing",
+    "509 - Arabic Word Fight"
+  ],
+
+  subjuniorgirls: [
+    "801 - Hand writing Arabic Malayalam",
+    "802 - Pencil Drawing",
+    "803 - Hand writing Arabic",
+    "804 - Kurunnukal Test"
+  ],
+
+  seniorgirls: [
+    "805 - Arabic Calligraphy",
+    "806 - Nano Literature"
+  ],
+
+  general: [
+    "601 - Burda Recitation",
+    "602 - Maulid Recitation",
+    "603 - Duff Muttu",
+    "604 - Arabic Group Song",
+    "701 - Spot Elocution",
+    "702 - Islamic Song Mashup",
+    "703 - Mappilappattu",
+    "704 - Master Hunt",
+    "705 - Digital Poster Designing"
+  ],
+
+  alumni: [
+    "Maulid Recitation",
+    "Duff Muttu",
+    "Arabic Group Song",
+    "Spot Elocution",
+    "Islamic Song Mashup",
+    "Mappilappattu",
+    "Master Hunt",
+    "Digital Poster Designing"
+  ],
+
+  muallim: [
+    "901 - HIZB",
+    "902 - Hifl",
+    "903 - Adaan (Subuh)",
+    "904 - Arabic Elocution",
+    "905 - Spot Elocution",
+    "906 - Essay writing",
+    "907 - Samastha Qissappattu"
+  ]
+};
+
+function loadPosterItems() {
+  const section = document.getElementById("posterSection");
+  const item = document.getElementById("posterItem");
+
+  item.innerHTML = '<option value="">മത്സരം തിരഞ്ഞെടുക്കുക</option>';
+
+  const items = posterItemsBySection[section.value] || [];
+
+  items.forEach(function(name) {
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    item.appendChild(option);
+  });
+
+  updatePoster();
+}
 </script>
     <!-- Search Section -->
     <div class="search-box">
