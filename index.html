@@ -233,6 +233,14 @@
     ഫലം അറിയാൻ
   </a>
 </div>
+    <!-- Poster Maker -->
+<div style="text-align:center; margin:14px 0;">
+  <button
+    onclick="openPosterMaker()"
+    style="display:inline-block; background:#d4af37; color:#173b2a; padding:12px 30px; border:none; border-radius:12px; font-weight:bold; font-size:16px; cursor:pointer;">
+    🏆 പോസ്റ്റർ നിർമ്മിക്കാം
+  </button>
+</div>
     <!-- Search Section -->
     <div class="search-box">
         <input
@@ -766,6 +774,38 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
     </script>
+<!-- POSTER MAKER -->
+<div id="posterMaker"
+     style="display:none; background:#fff; margin:20px 0; padding:18px; border-radius:18px; box-shadow:0 4px 18px rgba(0,0,0,.12);">
 
+  <h3 style="text-align:center; color:#173b2a; margin-top:0;">
+    🏆 പോസ്റ്റർ നിർമ്മിക്കാം
+  </h3>
+
+  <p style="text-align:center; color:#666;">
+    മത്സരത്തിന്റെ ഫലം ഉപയോഗിച്ച് പോസ്റ്റർ തയ്യാറാക്കാം
+  </p>
+
+  <button
+    onclick="closePosterMaker()"
+    style="display:block; margin:15px auto 5px; padding:10px 25px; border:0; border-radius:10px; background:#eee; font-weight:bold;">
+    അടയ്ക്കുക
+  </button>
+
+</div>
+
+<script>
+function openPosterMaker() {
+  document.getElementById("posterMaker").style.display = "block";
+
+  document.getElementById("posterMaker").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function closePosterMaker() {
+  document.getElementById("posterMaker").style.display = "none";
+}
+</script>
 </body>
 </html>
