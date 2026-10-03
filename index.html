@@ -236,7 +236,18 @@ u<!DOCTYPE html>
     
 
   
+<!-- Search Section -->
+<div class="search-box">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="കോഡ് നമ്പർ / ഇനം തിരയുക... ഉദാ: 201 അല്ലെങ്കിൽ ഖിറാഅത്ത്"
+        oninput="searchCode()"
+    >
+    <div id="searchResult" class="search-result"></div>
+</div>
 
+<!-- Venue Tabs -->
 <!-- Venue Tabs -->
 <div class="tabs">
     <button class="tab-btn active" onclick="openVenue('v1', this)">വേദി 1</button>
