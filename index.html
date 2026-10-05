@@ -216,6 +216,24 @@ body{
  background:#fee2e2;
  color:#b91c1c;
 }
+ .live-now{
+  border:3px solid #e53935!important;
+  background:#fff0f0!important;
+  box-shadow:0 0 15px rgba(229,57,53,.35)!important;
+  position:relative;
+}
+
+.live-now::before{
+  content:"🔴 LIVE NOW";
+  display:inline-block;
+  background:#e53935;
+  color:white;
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:14px;
+  font-weight:800;
+  margin-bottom:8px;
+}
 </style>
 </head>
 
@@ -505,7 +523,65 @@ function updateCountdown(){
 renderSchedules();
 updateCountdown();
 setInterval(updateCountdown,1000);
+function updateLiveEvents(){
 
+  const now = new Date();
+
+  if(
+    now.getFullYear() !== 2026 ||
+    now.getMonth() !== 9 ||
+    now.getDate() !== 10
+  ){
+    return;
+  }
+
+  document.querySelectorAll('.event-card').forEach(card=>{
+    card.classList.remove('live-now');
+  });
+
+  document.querySelectorAll('.venue-content').forEach(venue=>{
+
+    venue.querySelectorAll('.event-card').forEach(card=>{
+
+      if(card.classList.contains('break-card')) return;
+
+      const time = card.querySelector('.time');
+      if(!time) return;
+
+      const parts = time.innerText.trim().split('-');
+      if(parts.length !== 2) return;
+
+      function convert(t){
+        const p=t.trim().split('.');
+        let h=parseInt(p[0]);
+        const m=parseInt(p[1]);
+
+        if(h < 8) h += 12;
+
+        return h*60+m;
+      }
+
+      const startMinutes=convert(parts[0]);
+      const endMinutes=convert(parts[1]);
+
+      const currentMinutes=
+        now.getHours()*60+now.getMinutes();
+
+      if(
+        currentMinutes >= startMinutes &&
+        currentMinutes < endMinutes
+      ){
+        card.classList.add('live-now');
+      }
+
+    });
+
+  });
+
+}
+
+updateLiveEvents();
+setInterval(updateLiveEvents,10000);
 </script>
 
 </body>
