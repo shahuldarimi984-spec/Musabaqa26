@@ -969,18 +969,20 @@ setInterval(
      ഭാരവാഹികൾ
      ========================= -->
 
-<section class="office-bearers">
+<!-- =========================
+     ഭാരവാഹികൾ
+     ========================= -->
 
-<h2>
+<details class="office-bearers">
+
+<summary>
 മുസാബഖാ 2K26 ഭാരവാഹികൾ
-</h2>
+</summary>
 
 
 <div class="office-card">
 
-<b>
-ചെയർമാൻ
-</b>
+<b>ചെയർമാൻ</b>
 
 <p>
 ബഷീർ ഫൈസി അണ്ടോണ: 9846442977
@@ -991,18 +993,12 @@ setInterval(
 
 <div class="office-card">
 
-<b>
-വൈസ് ചെയർമാൻ
-</b>
+<b>വൈസ് ചെയർമാൻ</b>
 
 <p>
-
 1) ജലീൽ ഫൈസി കൂടത്തായിബസാർ: 96451 18641<br>
-
 2) താജുദ്ദീൻ ബാഖവി പരപ്പൻ പൊയിൽ: 97784 16468<br>
-
 3) ഷൈജൽ മിസ്ബാഹി കൂടത്തായി: 99464 39528
-
 </p>
 
 </div>
@@ -1010,9 +1006,7 @@ setInterval(
 
 <div class="office-card">
 
-<b>
-കൺവീനർ
-</b>
+<b>കൺവീനർ</b>
 
 <p>
 ഷാഹുൽ ഹമീദ് ദാരിമി പനക്കോട്: 964 515 4849
@@ -1023,18 +1017,12 @@ setInterval(
 
 <div class="office-card">
 
-<b>
-ജോയിന്റ് കൺവീനർ
-</b>
+<b>ജോയിന്റ് കൺവീനർ</b>
 
 <p>
-
 1) ശാഫി ഫൈസി പുറായിൽ: 80898 96375<br>
-
 2) മജീദ് ഫാളിലി തച്ചംപൊയിൽ: 99469 12031<br>
-
 3) റാഫി ഫൈസി വെഴുപ്പൂർ: 96334 44257
-
 </p>
 
 </div>
@@ -1042,9 +1030,7 @@ setInterval(
 
 <div class="office-card">
 
-<b>
-ട്രഷറർ
-</b>
+<b>ട്രഷറർ</b>
 
 <p>
 ഷൗകത്ത് അലി മുസ്ലിയാർ കൂടത്തായി ബസാർ: 97451 42217
@@ -1052,8 +1038,66 @@ setInterval(
 
 </div>
 
-</section>
+</details>
 
+
+<style>
+
+.office-bearers{
+ display:block;
+ margin:20px 0;
+ padding:18px 20px;
+ background:#ffffff;
+ border-radius:18px;
+ box-shadow:0 4px 15px rgba(0,0,0,.12);
+ border:1px solid #d8ebe3;
+}
+
+.office-bearers summary{
+ cursor:pointer;
+ list-style:none;
+ text-align:center;
+ color:#075e54;
+ font-size:20px;
+ font-weight:bold;
+ padding:8px;
+}
+
+.office-bearers summary::-webkit-details-marker{
+ display:none;
+}
+
+.office-bearers summary::after{
+ content:"  ▼";
+ font-size:13px;
+ color:#d4af37;
+}
+
+.office-bearers[open] summary::after{
+ content:"  ▲";
+}
+
+.office-card{
+ margin-top:12px;
+ padding:15px;
+ background:#f1f8f6;
+ border-radius:12px;
+ border-left:4px solid #087f5b;
+ color:#173b2a;
+ line-height:1.7;
+}
+
+.office-card b{
+ color:#075e54;
+ font-size:16px;
+}
+
+.office-card p{
+ margin:5px 0 0;
+ font-size:14px;
+}
+
+</style>
 
 </body>
 </html>
