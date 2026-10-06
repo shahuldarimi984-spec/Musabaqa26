@@ -12,6 +12,7 @@
 <title>THAMARASSERY RJM MUSABAQA</title>
 
 <style>
+
 *{
  box-sizing:border-box;
  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
@@ -162,7 +163,8 @@ body{
  text-align:center;
 }
 
-.time-badge,.venue-badge{
+.time-badge,
+.venue-badge{
  display:inline-block;
  padding:3px 8px;
  border-radius:20px;
@@ -216,144 +218,370 @@ body{
  background:#fee2e2;
  color:#b91c1c;
 }
- .live-now{
-  border:3px solid #e53935!important;
-  background:#fff0f0!important;
-  box-shadow:0 0 15px rgba(229,57,53,.35)!important;
-  position:relative;
+
+.live-now{
+ border:3px solid #e53935!important;
+ background:#fff0f0!important;
+ box-shadow:0 0 15px rgba(229,57,53,.35)!important;
+ position:relative;
 }
 
 .live-now::before{
-  content:"🔴 LIVE NOW";
-  display:inline-block;
-  background:#e53935;
-  color:white;
-  padding:5px 10px;
-  border-radius:20px;
-  font-size:14px;
-  font-weight:800;
-  margin-bottom:8px;
+ content:"🔴 LIVE NOW";
+ display:inline-block;
+ background:#e53935;
+ color:white;
+ padding:5px 10px;
+ border-radius:20px;
+ font-size:14px;
+ font-weight:800;
+ margin-bottom:8px;
 }
+
+
+/* =========================
+   ഭാരവാഹികൾ
+   ========================= */
+
+.office-bearers{
+ margin:20px 0;
+ padding:20px;
+ background:#ffffff;
+ border-radius:18px;
+ box-shadow:0 4px 15px rgba(0,0,0,.12);
+}
+
+.office-bearers h2{
+ text-align:center;
+ color:#075e54;
+ margin:0 0 20px;
+ font-size:21px;
+}
+
+.office-card{
+ padding:15px;
+ background:#f1f8f6;
+ border-radius:12px;
+ margin-bottom:12px;
+ color:#173b2a;
+ line-height:1.7;
+ border-left:4px solid #087f5b;
+}
+
+.office-card:last-child{
+ margin-bottom:0;
+}
+
+.office-card b{
+ color:#075e54;
+ font-size:16px;
+}
+
+.office-card p{
+ margin:5px 0 0;
+ font-size:14px;
+}
+
+
+/* മൊബൈൽ സ്ക്രീനിനായി */
+
+@media(max-width:600px){
+
+ body{
+  padding:10px;
+ }
+
+ .header{
+  padding:20px 10px;
+ }
+
+ .header h2{
+  font-size:19px;
+ }
+
+ #countdown{
+  gap:5px;
+ }
+
+ #countdown span{
+  min-width:58px;
+  padding:5px 6px;
+ }
+
+ .office-bearers{
+  padding:15px;
+ }
+
+ .office-bearers h2{
+  font-size:19px;
+ }
+
+ .office-card{
+  padding:13px;
+ }
+
+}
+
 </style>
 </head>
 
 <body>
 
+
+<!-- =========================
+     HEADER
+     ========================= -->
+
 <div class="header">
+
 <h2>THAMARASSERY RJM MUSABAQA</h2>
-<div class="date-text">2026 ഒക്ടോബർ 10 ശനിയാഴ്ച</div>
-<p>PROGRAM SCHEDULE</p>
-<div id="countdown"></div>
+
+<div class="date-text">
+2026 ഒക്ടോബർ 10 ശനിയാഴ്ച
 </div>
+
+<p>PROGRAM SCHEDULE</p>
+
+<div id="countdown"></div>
+
+</div>
+
+
+<!-- =========================
+     RESULTS
+     ========================= -->
 
 <a class="result-btn"
 href="https://musabaqa.skjmcc.net/results/range/result_new.php?range=25"
 target="_blank">
+
 ഫലം അറിയാൻ
+
 </a>
 
+
+<!-- =========================
+     SEARCH
+     ========================= -->
+
 <div class="search-box">
+
 <input
 type="text"
 id="searchInput"
 placeholder="കോഡ് നമ്പർ / ഇനം തിരയുക... ഉദാ: 201 അല്ലെങ്കിൽ ഖിറാഅത്ത്"
 oninput="searchCode()">
+
 <div id="searchResult"></div>
+
 </div>
+
+
+<!-- =========================
+     VENUE TABS
+     ========================= -->
 
 <div class="tabs">
-<button class="tab-btn active" onclick="openVenue('v1',this)">വേദി 1</button>
-<button class="tab-btn" onclick="openVenue('v2',this)">വേദി 2</button>
-<button class="tab-btn" onclick="openVenue('v3',this)">വേദി 3</button>
-<button class="tab-btn" onclick="openVenue('v4',this)">വേദി 4</button>
+
+<button
+class="tab-btn active"
+onclick="openVenue('v1',this)">
+വേദി 1
+</button>
+
+<button
+class="tab-btn"
+onclick="openVenue('v2',this)">
+വേദി 2
+</button>
+
+<button
+class="tab-btn"
+onclick="openVenue('v3',this)">
+വേദി 3
+</button>
+
+<button
+class="tab-btn"
+onclick="openVenue('v4',this)">
+വേദി 4
+</button>
+
 </div>
 
+
 <div id="v1" class="venue-content active"></div>
+
 <div id="v2" class="venue-content"></div>
+
 <div id="v3" class="venue-content"></div>
+
 <div id="v4" class="venue-content"></div>
+
 
 <script>
 
+
+/* =========================
+   PROGRAM SCHEDULE
+   ========================= */
+
 const schedules = {
 
+
 v1:[
+
 ["08.30 - 09.40","408-മാപ്പിളപ്പാട്ട്","സീനിയർ","08:30","09:40"],
+
 ["09.50 - 10.50","507-മാപ്പിളപ്പാട്ട്","സൂപ്പർ സീനിയർ","09:50","10:50"],
+
 ["10.55 - 11.45","604-അറബി സംഘഗാനം","ജനറൽ","10:55","11:45"],
+
 ["11.50 - 12.00","702-ഇസ്‌ലാമിക ഗാനം മാഷപ്പ്","അലുംനി","11:50","12:00"],
+
 ["12.00 - 12.50","307-ഇസ്‌ലാമിക സമൂഹ ഗാനം","ജൂനിയർ","12:00","12:50"],
+
 ["12.50 - 01.50","നിസ്കാരം, ഭക്ഷണം & വിശ്രമം","","","break"],
+
 ["02.00 - 03.00","203-മദ്ഹുന്നബി ഗാനം","സബ്ജൂനിയർ","14:00","15:00"],
+
 ["03.05 - 04.00","601-ബുർദാലാപനം","ജനറൽ","15:05","16:00"],
+
 ["04.00 - 04.30","അസർ നിസ്കാരം & ചായ","","","break"],
+
 ["04.30 - 05.20","602-മൗലിദ് പാരായണം","ജനറൽ","16:30","17:20"],
+
 ["05.30 - 06.20","603-ദഫ്മുട്ട്","ജനറൽ","17:30","18:20"]
+
 ],
+
 
 v2:[
+
 ["08.30 - 09.30","306-ഇസ്‌ലാമിക ഗാനം","ജൂനിയർ","08:30","09:30"],
+
 ["09.40 - 10.30","404-ഇസ്‌ലാമിക് ഗാനം അറബി","സീനിയർ","09:40","10:30"],
+
 ["10.35 - 11.10","102-കഥാകഥനം","കിഡ്ഡീസ്","10:35","11:10"],
+
 ["11.20 - 11.30","907-സമസ്ത ഖിസ്സപ്പാട്ട്","മുഅല്ലിം","11:20","11:30"],
+
 ["11.40 - 12.00","703-മാപ്പിളപ്പാട്ട്","അലുംനി","11:40","12:00"],
+
 ["12.05 - 12.30","504-പ്രസംഗം","സൂപ്പർ സീനിയർ","12:05","12:30"],
+
 ["12.35 - 01.00","505-ഇസ്‌ലാമിക ഗാനം അറബി","സൂപ്പർ സീനിയർ","12:35","13:00"],
+
 ["01.00 - 02.00","നിസ്കാരം, ഭക്ഷണം & വിശ്രമം","","","break"],
+
 ["02.00 - 03.00","506-പാടിപ്പറയൽ","സൂപ്പർ സീനിയർ","14:00","15:00"],
+
 ["03.10 - 04.10","304-പ്രസംഗം","ജൂനിയർ","15:10","16:10"],
+
 ["04.20 - 04.40","അസർ നിസ്കാരം & ചായ","","","break"],
+
 ["04.40 - 05.30","305-അറബി ഗാനം","ജൂനിയർ","16:40","17:30"],
+
 ["05.35 - 06.15","308-ഉർദു ഗാനം","ജൂനിയർ","17:35","18:15"]
+
 ],
+
 
 v3:[
+
 ["08.30 - 08.40","904-അറബിപ്രസംഗം","മുഅല്ലിം","08:30","08:40"],
+
 ["08.45 - 09.00","704-മാസ്റ്റർ ഹണ്ട്","അലുംനി","08:45","09:00"],
+
 ["09.10 - 09.55","705&909-ഡിജിറ്റൽ പോസ്റ്റർ ഡിസൈനിങ്","അലുംനി & മുഅല്ലിം","09:10","09:55"],
+
 ["09.30 - 10.20","302-ഹിഫ്ള്","ജൂനിയർ","09:30","10:20"],
+
 ["10.25 - 10.35","701-നിമിഷ പ്രസംഗം","അലുംനി","10:25","10:35"],
+
 ["10.40 - 11.10","503-അറബി പ്രസംഗം","സൂപ്പർ സീനിയർ","10:40","11:10"],
+
 ["11.15 - 12.05","405-പ്രസംഗം","സീനിയർ","11:15","12:05"],
+
 ["12.10 - 12.50","403-ബാങ്ക്","സീനിയർ","12:10","12:50"],
+
 ["12.50 - 01.50","നിസ്കാരം, ഭക്ഷണം & വിശ്രമം","","","break"],
+
 ["02.00 - 02.50","406-ഇംഗ്ലീഷ് പ്രസംഗം","സീനിയർ","14:00","14:50"],
+
 ["03.00 - 03.40","407-ഉർദു പ്രസംഗം","സീനിയർ","15:00","15:40"],
+
 ["03.45 - 04.15","അസർ നിസ്കാരം & ചായ","","","break"],
+
 ["04.20 - 04.30","905-നിമിഷ പ്രസംഗം","മുഅല്ലിം","16:20","16:30"],
+
 ["04.35 - 05.10","303-ബാങ്ക്","ജൂനിയർ","16:35","17:10"],
+
 ["05.15 - 05.45","410-ക്വിസ്","സീനിയർ","17:15","17:45"],
+
 ["05.50 - 06.10","205-ഓർമ്മ പരിശോധന","സബ്ജൂനിയർ","17:50","18:10"],
+
 ["05.55 - 06.15","311-കുരുന്നുകൾ ടെസ്റ്റ്","ജൂനിയർ","17:55","18:15"]
+
 ],
 
+
 v4:[
+
 ["08.30 - 09.00","501-ഖിറാഅത്ത്","സൂപ്പർ സീനിയർ","08:30","09:00"],
+
 ["09.05 - 09.50","201-ഖിറാഅത്ത്","സബ്ജൂനിയർ","09:05","09:50"],
+
 ["09.55 - 10.15","101-ഫാത്തിഹ പാരായണം","കിഡ്ഡീസ്","09:55","10:15"],
+
 ["10.20 - 11.10","502-ഹിഫ്ള്","സൂപ്പർ സീനിയർ","10:20","11:10"],
+
 ["11.15 - 12.00","401-ഖിറാഅത്ത്","സീനിയർ","11:15","12:00"],
+
 ["12.05 - 12.15","902-ഹിഫ്ള്","മുഅല്ലിം","12:05","12:15"],
+
 ["12.15 - 12.30","903-ബാങ്ക്","മുഅല്ലിം","12:15","12:30"],
+
 ["12.35 - 01.00","509-അറബി പദപയറ്റ്","സൂപ്പർ സീനിയർ","12:35","13:00"],
+
 ["01.00 - 02.00","നിസ്കാരം ഭക്ഷണം & വിശ്രമം","","","break"],
+
 ["02.00 - 03.00","402-ഹിഫ്ള്","സീനിയർ","14:00","15:00"],
+
 ["03.10 - 03.55","301-ഖിറാഅത്ത്","ജൂനിയർ","15:10","15:55"],
+
 ["03.55 - 04.25","അസർ നിസ്കാരം & ചായ","","","break"],
+
 ["04.30 - 05.15","202-ഹിഫ്ള്","സബ്ജൂനിയർ","16:30","17:15"],
+
 ["05.20 - 05.45","901-ഹിസ്‌ബ്","മുഅല്ലിം","17:20","17:45"],
+
 ["05.50 - 06.00","908-മുനാഖശ","മുഅല്ലിം","17:50","18:00"],
+
 ["06.00 - 06.10","910-മുശാഅറ","മുഅല്ലിം","18:00","18:10"]
+
 ]
 
 };
 
+
+/* =========================
+   VENUE NAMES
+   ========================= */
+
 const venueNames={
+
 v1:"വേദി 1",
 v2:"വേദി 2",
 v3:"വേദി 3",
 v4:"വേദി 4"
+
 };
+
+
+/* =========================
+   RENDER SCHEDULES
+   ========================= */
 
 function renderSchedules(){
 
@@ -370,21 +598,39 @@ for(const venue in schedules){
   if(item[4]==="break"){
 
    box.innerHTML+=`
+
    <div class="card break">
-   <span class="time-badge">${time}</span>
-   <div class="event-title">${title}</div>
+
+   <span class="time-badge">
+   ${time}
+   </span>
+
+   <div class="event-title">
+   ${title}
+   </div>
+
    </div>`;
 
   }else{
 
    box.innerHTML+=`
-   <div class="card"
+
+   <div
+   class="card"
    data-time="${item[3]}"
    data-endtime="${item[4]}">
 
-   <span class="time-badge">${time}</span>
-   <div class="event-title">${title}</div>
-   <div class="category">${category}</div>
+   <span class="time-badge">
+   ${time}
+   </span>
+
+   <div class="event-title">
+   ${title}
+   </div>
+
+   <div class="category">
+   ${category}
+   </div>
 
    </div>`;
 
@@ -396,6 +642,11 @@ for(const venue in schedules){
 
 }
 
+
+/* =========================
+   VENUE SWITCH
+   ========================= */
+
 function openVenue(id,btn){
 
  document.querySelectorAll(".venue-content")
@@ -405,9 +656,15 @@ function openVenue(id,btn){
  .forEach(x=>x.classList.remove("active"));
 
  document.getElementById(id).classList.add("active");
+
  btn.classList.add("active");
 
 }
+
+
+/* =========================
+   SEARCH
+   ========================= */
 
 function searchCode(){
 
@@ -426,7 +683,9 @@ function searchCode(){
  }
 
  const words=query.split(/\s+/);
+
  const matches=[];
+
 
  for(const venue in schedules){
 
@@ -439,12 +698,19 @@ function searchCode(){
    if(words.every(word=>text.includes(word))){
 
     matches.push({
+
      venue:venueNames[venue],
+
      time:item[0],
+
      title:item[1],
+
      category:item[2],
+
      start:item[3],
+
      end:item[4]
+
     });
 
    }
@@ -453,29 +719,54 @@ function searchCode(){
 
  }
 
+
  if(matches.length===0){
 
   result.innerHTML=`
+
   <div class="card">
+
   ഇനം കണ്ടെത്തിയില്ല. കോഡ് നമ്പറോ ഇനത്തിന്റെ പേരോ പരിശോധിക്കുക.
+
   </div>`;
 
   return;
+
  }
+
 
  matches.forEach(item=>{
 
   result.innerHTML+=`
+
   <div class="card">
-   <span class="venue-badge">${item.venue}</span>
-   <span class="time-badge">${item.time}</span>
-   <div class="event-title">${item.title}</div>
-   <div class="category">${item.category}</div>
+
+   <span class="venue-badge">
+   ${item.venue}
+   </span>
+
+   <span class="time-badge">
+   ${item.time}
+   </span>
+
+   <div class="event-title">
+   ${item.title}
+   </div>
+
+   <div class="category">
+   ${item.category}
+   </div>
+
   </div>`;
 
  });
 
 }
+
+
+/* =========================
+   COUNTDOWN
+   ========================= */
 
 function updateCountdown(){
 
@@ -484,138 +775,285 @@ function updateCountdown(){
  ).getTime();
 
  const now=new Date().getTime();
+
  const diff=target-now;
 
  const box=document.getElementById("countdown");
 
+
  if(diff<=0){
 
-  box.innerHTML="<span>🎉<br>മുസാബഖ ആരംഭിച്ചു!</span>";
+  box.innerHTML=
+  "<span>🎉<br>മുസാബഖ ആരംഭിച്ചു!</span>";
+
   return;
 
  }
+
 
  const days=Math.floor(
  diff/(1000*60*60*24)
  );
 
+
  const hours=Math.floor(
  (diff/(1000*60*60))%24
  );
+
 
  const minutes=Math.floor(
  (diff/(1000*60))%60
  );
 
+
  const seconds=Math.floor(
  (diff/1000)%60
  );
 
+
  box.innerHTML=`
- <span>📅<br>${days}<small>ദിവസം</small></span>
- <span>🕐<br>${hours}<small>മണിക്കൂർ</small></span>
- <span>⏱️<br>${minutes}<small>മിനിറ്റ്</small></span>
- <span>⚡<br>${seconds}<small>സെക്കന്റ്</small></span>
+
+ <span>
+ 📅<br>
+ ${days}
+ <small>ദിവസം</small>
+ </span>
+
+ <span>
+ 🕐<br>
+ ${hours}
+ <small>മണിക്കൂർ</small>
+ </span>
+
+ <span>
+ ⏱️<br>
+ ${minutes}
+ <small>മിനിറ്റ്</small>
+ </span>
+
+ <span>
+ ⚡<br>
+ ${seconds}
+ <small>സെക്കന്റ്</small>
+ </span>
+
  `;
 
 }
 
-renderSchedules();
-updateCountdown();
-setInterval(updateCountdown,1000);
+
+/* =========================
+   LIVE EVENT
+   ========================= */
+
 function updateLiveEvents(){
 
-  const now = new Date();
+ const now = new Date();
 
-  if(
-    now.getFullYear() !== 2026 ||
-    now.getMonth() !== 9 ||
-    now.getDate() !== 10
-  ){
+ if(
+  now.getFullYear() !== 2026 ||
+  now.getMonth() !== 9 ||
+  now.getDate() !== 10
+ ){
+  return;
+ }
+
+
+ document
+ .querySelectorAll('.card')
+ .forEach(card=>{
+
+  card.classList.remove('live-now');
+
+ });
+
+
+ document
+ .querySelectorAll('.venue-content')
+ .forEach(venue=>{
+
+  venue
+  .querySelectorAll('.card')
+  .forEach(card=>{
+
+   if(card.classList.contains('break')){
     return;
-  }
+   }
 
-  document.querySelectorAll('.event-card').forEach(card=>{
-    card.classList.remove('live-now');
+
+   const timeText =
+   card.querySelector('.time-badge');
+
+   if(!timeText){
+    return;
+   }
+
+
+   const parts =
+   timeText.innerText.trim().split('-');
+
+
+   if(parts.length !== 2){
+    return;
+   }
+
+
+   function convert(t){
+
+    const p =
+    t.trim().split(':');
+
+    let h =
+    parseInt(p[0]);
+
+    const m =
+    parseInt(p[1]);
+
+    return h*60+m;
+
+   }
+
+
+   const startMinutes =
+   convert(parts[0]);
+
+   const endMinutes =
+   convert(parts[1]);
+
+
+   const currentMinutes =
+   now.getHours()*60+
+   now.getMinutes();
+
+
+   if(
+    currentMinutes >= startMinutes &&
+    currentMinutes < endMinutes
+   ){
+
+    card.classList.add('live-now');
+
+   }
+
   });
 
-  document.querySelectorAll('.venue-content').forEach(venue=>{
-
-    venue.querySelectorAll('.event-card').forEach(card=>{
-
-      if(card.classList.contains('break-card')) return;
-
-      const time = card.querySelector('.time');
-      if(!time) return;
-
-      const parts = time.innerText.trim().split('-');
-      if(parts.length !== 2) return;
-
-      function convert(t){
-        const p=t.trim().split('.');
-        let h=parseInt(p[0]);
-        const m=parseInt(p[1]);
-
-        if(h < 8) h += 12;
-
-        return h*60+m;
-      }
-
-      const startMinutes=convert(parts[0]);
-      const endMinutes=convert(parts[1]);
-
-      const currentMinutes=
-        now.getHours()*60+now.getMinutes();
-
-      if(
-        currentMinutes >= startMinutes &&
-        currentMinutes < endMinutes
-      ){
-        card.classList.add('live-now');
-      }
-
-    });
-
-  });
+ });
 
 }
 
+
+/* =========================
+   START
+   ========================= */
+
+renderSchedules();
+
+updateCountdown();
+
+setInterval(
+ updateCountdown,
+ 1000
+);
+
 updateLiveEvents();
-setInterval(updateLiveEvents,10000);
+
+setInterval(
+ updateLiveEvents,
+ 10000
+);
+
 </script>
-<section style="margin:20px 0;padding:20px;background:#ffffff;border-radius:18px;box-shadow:0 4px 15px rgba(0,0,0,.12);">
-  <h2 style="text-align:center;color:#075e54;margin-bottom:20px;">
-    മുസാബഖാ 2K26 ഭാരവാഹികൾ
-  </h2>
 
-  <div style="padding:15px;background:#f1f8f6;border-radius:12px;margin-bottom:12px;">
-    <b>ചെയർമാൻ</b><br>
-    ബഷീർ ഫൈസി അണ്ടോണ: 9846442977
-  </div>
 
-  <div style="padding:15px;background:#f1f8f6;border-radius:12px;margin-bottom:12px;">
-    <b>വൈസ് ചെയർമാൻ</b><br>
-    1) ജലീൽ ഫൈസി കൂടത്തായിബസാർ: 96451 18641<br>
-    2) താജുദ്ദീൻ ബാഖവി പരപ്പൻ പൊയിൽ: 97784 16468<br>
-    3) ഷൈജൽ മിസ്ബാഹി കൂടത്തായി: 99464 39528
-  </div>
+<!-- =========================
+     ഭാരവാഹികൾ
+     ========================= -->
 
-  <div style="padding:15px;background:#f1f8f6;border-radius:12px;margin-bottom:12px;">
-    <b>കൺവീനർ</b><br>
-    ഷാഹുൽ ഹമീദ് ദാരിമി പനക്കോട്: 964 515 4849
-  </div>
+<section class="office-bearers">
 
-  <div style="padding:15px;background:#f1f8f6;border-radius:12px;margin-bottom:12px;">
-    <b>ജോയിന്റ് കൺവീനർ</b><br>
-    1) ശാഫി ഫൈസി പുറായിൽ: 80898 96375<br>
-    2) മജീദ് ഫാളിലി തച്ചംപൊയിൽ: 99469 12031<br>
-    3) റാഫി ഫൈസി വെഴുപ്പൂർ: 96334 44257
-  </div>
+<h2>
+മുസാബഖാ 2K26 ഭാരവാഹികൾ
+</h2>
 
-  <div style="padding:15px;background:#f1f8f6;border-radius:12px;">
-    <b>ട്രഷറർ</b><br>
-    ഷൗകത്ത് അലി മുസ്ലിയാർ കൂടത്തായി ബസാർ: 97451 42217
-  </div>
+
+<div class="office-card">
+
+<b>
+ചെയർമാൻ
+</b>
+
+<p>
+ബഷീർ ഫൈസി അണ്ടോണ: 9846442977
+</p>
+
+</div>
+
+
+<div class="office-card">
+
+<b>
+വൈസ് ചെയർമാൻ
+</b>
+
+<p>
+
+1) ജലീൽ ഫൈസി കൂടത്തായിബസാർ: 96451 18641<br>
+
+2) താജുദ്ദീൻ ബാഖവി പരപ്പൻ പൊയിൽ: 97784 16468<br>
+
+3) ഷൈജൽ മിസ്ബാഹി കൂടത്തായി: 99464 39528
+
+</p>
+
+</div>
+
+
+<div class="office-card">
+
+<b>
+കൺവീനർ
+</b>
+
+<p>
+ഷാഹുൽ ഹമീദ് ദാരിമി പനക്കോട്: 964 515 4849
+</p>
+
+</div>
+
+
+<div class="office-card">
+
+<b>
+ജോയിന്റ് കൺവീനർ
+</b>
+
+<p>
+
+1) ശാഫി ഫൈസി പുറായിൽ: 80898 96375<br>
+
+2) മജീദ് ഫാളിലി തച്ചംപൊയിൽ: 99469 12031<br>
+
+3) റാഫി ഫൈസി വെഴുപ്പൂർ: 96334 44257
+
+</p>
+
+</div>
+
+
+<div class="office-card">
+
+<b>
+ട്രഷറർ
+</b>
+
+<p>
+ഷൗകത്ത് അലി മുസ്ലിയാർ കൂടത്തായി ബസാർ: 97451 42217
+</p>
+
+</div>
+
 </section>
+
+
 </body>
 </html>
