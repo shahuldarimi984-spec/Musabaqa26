@@ -1530,7 +1530,12 @@ function(){
 
 
 function drawWishPoster(photo){
-
+if (!wishImage.complete || wishImage.naturalWidth === 0) {
+  wishImage.onload = function(){
+    drawWishPoster(photo);
+  };
+  return;
+}
  const canvas=
  document.getElementById("wishCanvas");
 
