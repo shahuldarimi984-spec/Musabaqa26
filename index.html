@@ -1257,6 +1257,44 @@ type="file"
 id="wishPhoto"
 accept="image/*">
 
+<div id="cropArea" style="display:none; margin-top:12px;">
+
+  <p style="text-align:center;font-weight:bold;color:#075e54;">
+    📸 ഫോട്ടോ ക്രമീകരിക്കുക
+  </p>
+
+  <canvas
+    id="cropCanvas"
+    style="width:100%;max-width:400px;display:block;margin:auto;border-radius:12px;touch-action:none;">
+  </canvas>
+
+  <div style="display:flex;gap:8px;margin-top:10px;">
+
+    <button
+      type="button"
+      onclick="zoomPhoto(-0.1)"
+      style="flex:1;padding:12px;border:0;border-radius:10px;">
+      ➖ Zoom
+    </button>
+
+    <button
+      type="button"
+      onclick="zoomPhoto(0.1)"
+      style="flex:1;padding:12px;border:0;border-radius:10px;">
+      ➕ Zoom
+    </button>
+
+  </div>
+
+  <button
+    type="button"
+    onclick="useCroppedPhoto()"
+    style="width:100%;margin-top:10px;padding:13px;border:0;border-radius:10px;background:#075e54;color:white;font-weight:bold;">
+    ✅ ഫോട്ടോ റെഡി ചെയ്യുക
+  </button>
+
+</div>
+
 <canvas
 id="wishCanvas">
 </canvas>
@@ -1301,6 +1339,14 @@ function openWishMaker(){
 }
 
 
+let cropPhoto = null;
+let cropScale = 1;
+let cropX = 0;
+let cropY = 0;
+let cropStartX = 0;
+let cropStartY = 0;
+let draggingCrop = false;
+
 document
 .getElementById("wishPhoto")
 .addEventListener("change",function(){
@@ -1309,21 +1355,27 @@ document
   return;
  }
 
- const reader=
- new FileReader();
+ const reader = new FileReader();
 
- reader.onload=function(e){
+ reader.onload = function(e){
 
-  const photo=
-  new Image();
+  cropPhoto = new Image();
 
-  photo.onload=function(){
+  cropPhoto.onload = function(){
 
-   drawWishPoster(photo);
+   cropScale = 1;
+   cropX = 0;
+   cropY = 0;
+
+   document
+   .getElementById("cropArea")
+   .style.display = "block";
+
+   drawCropPhoto();
 
   };
 
-  photo.src=e.target.result;
+  cropPhoto.src = e.target.result;
 
  };
 
@@ -1332,38 +1384,149 @@ document
 });
 
 
-document
-.getElementById("wishName")
-.addEventListener("input",function(){
+function drawCropPhoto(){
 
- const photoInput=
- document.getElementById("wishPhoto");
+ const canvas =
+ document.getElementById("cropCanvas");
 
- if(!photoInput.files[0]){
+ const ctx =
+ canvas.getContext("2d");
+
+ const box = 320;
+
+ canvas.width = box;
+ canvas.height = box;
+
+ ctx.clearRect(0,0,box,box);
+
+ const scale =
+ Math.max(
+  box/cropPhoto.width,
+  box/cropPhoto.height
+ ) * cropScale;
+
+ const w =
+ cropPhoto.width * scale;
+
+ const h =
+ cropPhoto.height * scale;
+
+ const x =
+ (box-w)/2 + cropX;
+
+ const y =
+ (box-h)/2 + cropY;
+
+ ctx.drawImage(
+  cropPhoto,
+  x,
+  y,
+  w,
+  h
+ );
+
+}
+
+
+function zoomPhoto(value){
+
+ if(!cropPhoto){
   return;
  }
 
- const reader=
- new FileReader();
+ cropScale += value;
 
- reader.onload=function(e){
+ if(cropScale < 0.5){
+  cropScale = 0.5;
+ }
 
-  const photo=
-  new Image();
+ if(cropScale > 4){
+  cropScale = 4;
+ }
 
-  photo.onload=function(){
+ drawCropPhoto();
 
-   drawWishPoster(photo);
+}
 
-  };
 
-  photo.src=e.target.result;
+function useCroppedPhoto(){
+
+ if(!cropPhoto){
+  return;
+ }
+
+ const canvas =
+ document.getElementById("cropCanvas");
+
+ const photo =
+ new Image();
+
+ photo.onload = function(){
+
+  drawWishPoster(photo);
 
  };
 
- reader.readAsDataURL(photoInput.files[0]);
+ photo.src =
+ canvas.toDataURL("image/png");
 
-});
+}
+
+
+const cropCanvas =
+document.getElementById("cropCanvas");
+
+
+cropCanvas.addEventListener(
+"touchstart",
+function(e){
+
+ const t = e.touches[0];
+
+ draggingCrop = true;
+
+ cropStartX = t.clientX - cropX;
+ cropStartY = t.clientY - cropY;
+
+},
+{passive:true}
+);
+
+
+cropCanvas.addEventListener(
+"touchmove",
+function(e){
+
+ if(!draggingCrop){
+  return;
+ }
+
+ const t = e.touches[0];
+
+ cropX =
+ t.clientX - cropStartX;
+
+ cropY =
+ t.clientY - cropStartY;
+
+ drawCropPhoto();
+
+},
+{passive:true}
+);
+
+
+cropCanvas.addEventListener(
+"touchend",
+function(){
+
+ draggingCrop = false;
+
+}
+);
+
+
+
 
 
 function drawWishPoster(photo){
