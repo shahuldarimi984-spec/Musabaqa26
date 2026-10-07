@@ -1392,18 +1392,19 @@ function drawCropPhoto(){
  const ctx =
  canvas.getContext("2d");
 
- const box = 320;
+ const boxW = 345;
+const boxH = 330;
 
- canvas.width = box;
- canvas.height = box;
+canvas.width = boxW;
+canvas.height = boxH;
 
- ctx.clearRect(0,0,box,box);
+ctx.clearRect(0,0,boxW,boxH);
 
  const scale =
- Math.max(
-  box/cropPhoto.width,
-  box/cropPhoto.height
- ) * cropScale;
+Math.max(
+ boxW/cropPhoto.width,
+ boxH/cropPhoto.height
+) * cropScale;
 
  const w =
  cropPhoto.width * scale;
@@ -1412,10 +1413,10 @@ function drawCropPhoto(){
  cropPhoto.height * scale;
 
  const x =
- (box-w)/2 + cropX;
+(boxW-w)/2 + cropX;
 
- const y =
- (box-h)/2 + cropY;
+const y =
+(boxH-h)/2 + cropY;
 
  ctx.drawImage(
   cropPhoto,
