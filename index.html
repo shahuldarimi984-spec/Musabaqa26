@@ -1149,6 +1149,375 @@ setInterval(
 }
 
 </style>
+<!-- =========================
+     ആശംസാ പോസ്റ്റർ MAKER
+     ========================= -->
 
+<style>
+
+.wish-maker{
+ margin:20px 0;
+ padding:18px;
+ background:#fff;
+ border-radius:18px;
+ box-shadow:0 4px 15px rgba(0,0,0,.12);
+ border:1px solid #d8ebe3;
+}
+
+.wish-maker h2{
+ text-align:center;
+ color:#075e54;
+ margin:5px 0 15px;
+ font-size:20px;
+}
+
+.wish-btn{
+ display:block;
+ width:100%;
+ padding:14px;
+ border:0;
+ border-radius:12px;
+ background:linear-gradient(135deg,#064e3b,#087f5b);
+ color:white;
+ font-size:16px;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+.wish-form{
+ display:none;
+ margin-top:15px;
+}
+
+.wish-form input[type="text"]{
+ width:100%;
+ padding:13px;
+ border:2px solid #b8d8c5;
+ border-radius:12px;
+ font-size:15px;
+ margin-bottom:10px;
+}
+
+.wish-form input[type="file"]{
+ width:100%;
+ padding:10px;
+ background:#f1f8f6;
+ border-radius:10px;
+ margin-bottom:12px;
+}
+
+#wishCanvas{
+ display:block;
+ width:100%;
+ max-width:500px;
+ margin:15px auto;
+ border-radius:12px;
+ box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+.download-wish{
+ display:none;
+ width:100%;
+ padding:14px;
+ border:0;
+ border-radius:12px;
+ background:#d4af37;
+ color:#173b2a;
+ font-size:16px;
+ font-weight:bold;
+ cursor:pointer;
+ margin-top:10px;
+}
+
+</style>
+
+
+<div class="wish-maker">
+
+<h2>📸 ആശംസാ പോസ്റ്റർ നിർമ്മിക്കാം</h2>
+
+<button
+class="wish-btn"
+onclick="openWishMaker()">
+✨ എന്റെ ആശംസാ പോസ്റ്റർ തയ്യാറാക്കാം
+</button>
+
+
+<div
+id="wishForm"
+class="wish-form">
+
+<input
+type="text"
+id="wishName"
+placeholder="നിങ്ങളുടെ പേര് എഴുതുക">
+
+<input
+type="file"
+id="wishPhoto"
+accept="image/*">
+
+<canvas
+id="wishCanvas">
+</canvas>
+
+<button
+id="downloadWish"
+class="download-wish"
+onclick="downloadWishPoster()">
+⬇️ പോസ്റ്റർ സേവ് ചെയ്യുക
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const wishPoster =
+"https://shahuldarimi984-spec.github.io/Musabaqa26/wish-poster-1.jpg";
+
+let wishImage =
+new Image();
+
+wishImage.crossOrigin="anonymous";
+
+wishImage.src=wishPoster;
+
+
+function openWishMaker(){
+
+ const form=
+ document.getElementById("wishForm");
+
+ form.style.display="block";
+
+ form.scrollIntoView({
+  behavior:"smooth",
+  block:"center"
+ });
+
+}
+
+
+document
+.getElementById("wishPhoto")
+.addEventListener("change",function(){
+
+ if(!this.files[0]){
+  return;
+ }
+
+ const reader=
+ new FileReader();
+
+ reader.onload=function(e){
+
+  const photo=
+  new Image();
+
+  photo.onload=function(){
+
+   drawWishPoster(photo);
+
+  };
+
+  photo.src=e.target.result;
+
+ };
+
+ reader.readAsDataURL(this.files[0]);
+
+});
+
+
+document
+.getElementById("wishName")
+.addEventListener("input",function(){
+
+ const photoInput=
+ document.getElementById("wishPhoto");
+
+ if(!photoInput.files[0]){
+  return;
+ }
+
+ const reader=
+ new FileReader();
+
+ reader.onload=function(e){
+
+  const photo=
+  new Image();
+
+  photo.onload=function(){
+
+   drawWishPoster(photo);
+
+  };
+
+  photo.src=e.target.result;
+
+ };
+
+ reader.readAsDataURL(photoInput.files[0]);
+
+});
+
+
+function drawWishPoster(photo){
+
+ const canvas=
+ document.getElementById("wishCanvas");
+
+ const ctx=
+ canvas.getContext("2d");
+
+ canvas.width=
+ wishImage.naturalWidth;
+
+ canvas.height=
+ wishImage.naturalHeight;
+
+
+ /* Base poster */
+
+ ctx.drawImage(
+  wishImage,
+  0,
+  0,
+  canvas.width,
+  canvas.height
+ );
+
+
+ /*
+   PHOTO AREA
+   Poster-ലെ ഫോട്ടോ ഫ്രെയിമിന്
+   അനുയോജ്യമായ സ്ഥലം
+ */
+
+ const x=105;
+ const y=690;
+ const w=345;
+ const h=330;
+
+
+ /*
+   ഫോട്ടോ crop ചെയ്ത്
+   frame-ൽ fit ചെയ്യുന്നു
+ */
+
+ const scale=
+ Math.max(
+  w/photo.width,
+  h/photo.height
+ );
+
+ const sw=
+ photo.width*scale;
+
+ const sh=
+ photo.height*scale;
+
+ const sx=
+ x+(w-sw)/2;
+
+ const sy=
+ y+(h-sh)/2;
+
+
+ ctx.save();
+
+ ctx.beginPath();
+
+ ctx.rect(
+  x,
+  y,
+  w,
+  h
+ );
+
+ ctx.clip();
+
+ ctx.drawImage(
+  photo,
+  sx,
+  sy,
+  sw,
+  sh
+ );
+
+ ctx.restore();
+
+
+ /*
+   പേര്
+ */
+
+ const name=
+ document
+ .getElementById("wishName")
+ .value
+ .trim();
+
+ if(name){
+
+  ctx.fillStyle="#173b2a";
+
+  ctx.textAlign="center";
+
+  ctx.font=
+  "bold 32px Arial";
+
+  ctx.fillText(
+   name,
+   275,
+   1080
+  );
+
+ }
+
+
+ document
+ .getElementById("downloadWish")
+ .style.display="block";
+
+}
+
+
+function downloadWishPoster(){
+
+ const canvas=
+ document.getElementById("wishCanvas");
+
+ const name=
+ document
+ .getElementById("wishName")
+ .value
+ .trim();
+
+
+ const safeName=
+ name
+ ? name.replace(/[^\u0000-\uFFFF]/g,"").replace(/\s+/g,"-")
+ : "ashamsa";
+
+
+ const link=
+ document.createElement("a");
+
+ link.download=
+ "Musabaqa-Ashamsa-"+safeName+".png";
+
+ link.href=
+ canvas.toDataURL("image/png");
+
+ link.click();
+
+}
+
+   </script>
 </body>
 </html>
