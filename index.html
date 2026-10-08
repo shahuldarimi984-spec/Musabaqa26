@@ -1531,130 +1531,157 @@ function(){
 
 
 function drawWishPoster(photo){
-if (!wishImage.complete || wishImage.naturalWidth === 0) {
-  wishImage.onload = function(){
-    drawWishPoster(photo);
-  };
-  return;
-}
- const canvas=
+
+ const canvas =
  document.getElementById("wishCanvas");
 
- const ctx=
+ const ctx =
  canvas.getContext("2d");
 
- canvas.width=
- wishImage.naturalWidth;
+ const poster =
+ new Image();
 
- canvas.height=
- wishImage.naturalHeight;
+ poster.onload = function(){
 
+  const maxW = 1200;
+  const maxH = 2000;
 
- /* Base poster */
-
- ctx.drawImage(
-  wishImage,
-  0,
-  0,
-  canvas.width,
-  canvas.height
- );
-
-
- /*
-   PHOTO AREA
-   Poster-ലെ ഫോട്ടോ ഫ്രെയിമിന്
-   അനുയോജ്യമായ സ്ഥലം
- */
-
- const x=105;
- const y=690;
- const w=345;
- const h=330;
-
-
- /*
-   ഫോട്ടോ crop ചെയ്ത്
-   frame-ൽ fit ചെയ്യുന്നു
- */
-
- const scale=
- Math.max(
-  w/photo.width,
-  h/photo.height
- );
-
- const sw=
- photo.width*scale;
-
- const sh=
- photo.height*scale;
-
- const sx=
- x+(w-sw)/2;
-
- const sy=
- y+(h-sh)/2;
-
-
- ctx.save();
-
- ctx.beginPath();
-
- ctx.rect(
-  x,
-  y,
-  w,
-  h
- );
-
- ctx.clip();
-
- ctx.drawImage(
-  photo,
-  sx,
-  sy,
-  sw,
-  sh
- );
-
- ctx.restore();
-
-
- /*
-   പേര്
- */
-
- const name=
- document
- .getElementById("wishName")
- .value
- .trim();
-
- if(name){
-
-  ctx.fillStyle="#173b2a";
-
-  ctx.textAlign="center";
-
-  ctx.font=
-  "bold 32px Arial";
-
-  ctx.fillText(
-   name,
-   275,
-   1080
+  const scale =
+  Math.min(
+   1,
+   maxW / poster.naturalWidth,
+   maxH / poster.naturalHeight
   );
 
- }
+  canvas.width =
+  Math.round(
+   poster.naturalWidth * scale
+  );
 
+  canvas.height =
+  Math.round(
+   poster.naturalHeight * scale
+  );
 
- document
- .getElementById("downloadWish")
- .style.display="block";
+  ctx.clearRect(
+   0,
+   0,
+   canvas.width,
+   canvas.height
+  );
+
+  ctx.drawImage(
+   poster,
+   0,
+   0,
+   canvas.width,
+   canvas.height
+  );
+
+  const designScale =
+  canvas.width / 550;
+
+  const x =
+  105 * designScale;
+
+  const y =
+  690 * designScale;
+
+  const w =
+  345 * designScale;
+
+  const h =
+  330 * designScale;
+
+  const photoScale =
+  Math.max(
+   w / photo.width,
+   h / photo.height
+  );
+
+  const sw =
+  photo.width * photoScale;
+
+  const sh =
+  photo.height * photoScale;
+
+  const sx =
+  x + (w - sw) / 2;
+
+  const sy =
+  y + (h - sh) / 2;
+
+  ctx.save();
+
+  ctx.beginPath();
+
+  ctx.rect(
+   x,
+   y,
+   w,
+   h
+  );
+
+  ctx.clip();
+
+  ctx.drawImage(
+   photo,
+   sx,
+   sy,
+   sw,
+   sh
+  );
+
+  ctx.restore();
+
+  const name =
+  document
+  .getElementById("wishName")
+  .value
+  .trim();
+
+  if(name){
+
+   ctx.fillStyle =
+   "#173b2a";
+
+   ctx.textAlign =
+   "center";
+
+   ctx.font =
+   "bold " +
+   (32 * designScale) +
+   "px Arial";
+
+   ctx.fillText(
+    name,
+    275 * designScale,
+    1080 * designScale
+   );
+
+  }
+
+  document
+  .getElementById("downloadWish")
+  .style.display =
+  "block";
+
+ };
+
+ poster.onerror = function(){
+
+  alert(
+   "പുതിയ പോസ്റ്റർ ചിത്രം ലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല."
+  );
+
+ };
+
+ poster.src =
+ wishPoster + "?v=" + Date.now();
 
 }
-
+  
+ 
 
 function downloadWishPoster(){
 
